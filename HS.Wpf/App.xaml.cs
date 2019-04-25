@@ -17,6 +17,7 @@ using HS.Wpf.ViewModels;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Markup;
+using System.Text;
 
 namespace HS.Wpf
 {
@@ -27,6 +28,17 @@ namespace HS.Wpf
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            StringBuilder sb = new StringBuilder();
+            string s = "";
+            for (int i = 39; i < 50; i++)
+            {
+                sb.AppendLine(string.Format(@"<ColumnDefinition Width=&# Binding ElementName=Column{0}, Path=ActualWidth|& />", i));
+            }
+            s = sb.ToString();
+            s = s.Replace("&", "\"");
+            s = s.Replace("#", "{");
+            s = s.Replace("|", "}");
+
             base.OnStartup(e);
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("cs-CZ");

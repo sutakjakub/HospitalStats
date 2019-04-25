@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1200">
+             d:DesignHeight="450" d:DesignWidth="1200"
+             x:Name="LayoutRoot">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,20 +15,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <dxmvvm:Interaction.Behaviors>
-        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadedCommand}" />
-    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal">
             <Button Content="Přidat" Style="{StaticResource ResourceKey=actionBarButton}"/>
             <Button Content="Editovat" Style="{StaticResource ResourceKey=actionBarButton}"/>
             <Button Content="Smazat" Style="{StaticResource ResourceKey=actionBarButton}"/>
@@ -36,10 +30,8 @@
                     Command="{Binding LoadDataCommand}" />
         </StackPanel>
 
-        <local:CollectionActionsView DataContext="{Binding CollectionActions}" SelectedAction="{Binding SelectedAction}" Grid.Row="1" Grid.Column="0" Margin="5 5">
-            
-        </local:CollectionActionsView>
-
-        <local:DetailOrActionView Grid.Row="1" Grid.Column="1" />
+        <local:CollectionActionsView DataContext="{Binding CollectionActions}" 
+                                     SelectedAction="{Binding Path=DataContext.SelectedAction, ElementName=LayoutRoot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Row="1" Grid.Column="0" />
     </Grid>
 </UserControl>

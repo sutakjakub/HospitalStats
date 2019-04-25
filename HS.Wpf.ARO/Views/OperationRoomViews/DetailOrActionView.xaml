@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sources="clr-namespace:HS.Wpf.Shared.Sources;assembly=HS.Wpf.Shared"
              xmlns:dt="clr-namespace:HS.Wpf.ARO.DesingTime"
-             xmlns:controls="clr-namespace:HS.Wpf.Shared.Controls;assembly=HS.Wpf.Shared"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="350"
              d:DataContext="{d:DesignInstance Type=dt:OperationRoomActionViewModelDesingTime, IsDesignTimeCreatable=True}">
@@ -50,10 +49,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Q1" />
-                <controls:BooleanComboBoxControl DataContext="{Binding Q1Item}" Grid.Column="1" />
-                <!--<ComboBox 
+                <ComboBox 
                     ItemsSource="{x:Static sources:BooleanSource.Items}"
-                    SelectedValue="{Binding Model.Q1, Converter={StaticResource BoolToStringConverter}}" Grid.Column="1" />-->
+                    SelectedItem="{Binding Q1Item}" 
+                    SelectedValuePath="Value" 
+                    DisplayMemberPath="Display" 
+                    Grid.Column="1" />
             </Grid>
 
             <Grid>
@@ -78,7 +79,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Q3" />
-                <ComboBox SelectedValue="{Binding Model.Q3, Converter={StaticResource BoolToStringConverter}}" Grid.Column="1" />
+                <ComboBox 
+                    ItemsSource="{x:Static sources:BooleanSource.Items}"
+                    SelectedItem="{Binding Q3Item}" 
+                    SelectedValuePath="Value" 
+                    DisplayMemberPath="Display" 
+                    Grid.Column="1" />
             </Grid>
 
             <Grid>
@@ -87,7 +93,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Q4" />
-                <ComboBox SelectedValue="{Binding Model.Q4, Converter={StaticResource BoolToStringConverter}}" Grid.Column="1" />
+                <ComboBox 
+                    ItemsSource="{x:Static sources:BooleanSource.Items}"
+                    SelectedItem="{Binding Q4Item}" 
+                    SelectedValuePath="Value" 
+                    DisplayMemberPath="Display" 
+                    Grid.Column="1" />
             </Grid>
 
             <Grid>
@@ -96,7 +107,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Q5" />
-                <ComboBox SelectedValue="{Binding Model.Q5, Converter={StaticResource BoolToStringConverter}}" Grid.Column="1" />
+                <ComboBox 
+                    ItemsSource="{x:Static sources:BooleanSource.Items}"
+                    SelectedItem="{Binding Q5Item}" 
+                    SelectedValuePath="Value" 
+                    DisplayMemberPath="Display" 
+                    Grid.Column="1" />
             </Grid>
 
         </StackPanel>

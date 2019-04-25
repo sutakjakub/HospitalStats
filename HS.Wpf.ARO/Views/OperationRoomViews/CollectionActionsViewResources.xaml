@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converters="clr-namespace:HS.Wpf.Shared.Converters"
              mc:Ignorable="d">
-    <converters:BoolToStringConverter x:Key="BoolToStringConverter" />
-    <converters:AsaXToStringConverter x:Key="AsaXToStringConverter" />
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/HS.Wpf.Shared;component/Theme/Generics.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type DataGridCellsPresenter}">
+        <Setter Property="Height" Value="50" />
+    </Style>
 </ResourceDictionary>

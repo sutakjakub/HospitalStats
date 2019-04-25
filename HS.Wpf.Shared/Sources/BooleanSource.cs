@@ -8,7 +8,7 @@ namespace HS.Wpf.Shared.Sources
 {
     public static class BooleanSource
     {
-        public static IList<ComboBoxItem> Items = new List<ComboBoxItem>()
+        public static IEnumerable<ComboBoxItem> Items = new List<ComboBoxItem>()
         {
             new ComboBoxItem() { Value = false, Display = "NE" },
             new ComboBoxItem() { Value = true, Display = "ANO" }

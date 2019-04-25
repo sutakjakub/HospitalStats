@@ -25,11 +25,11 @@ namespace HS.Data
                     IsDeleted = false,
                     IssueDate = DateTime.Now.Date.AddDays(-10),
                     Modified = DateTime.Now,
-                    Q1 = true,
-                    Q2 = false,
-                    Q3 = true,
-                    Q4 = true,
-                    Q5 = false
+                    //Q1 = true,
+                    //Q2 = false,
+                    //Q3 = true,
+                    //Q4 = true,
+                    //Q5 = false
                 });
                 ctx.SaveChanges();
             }

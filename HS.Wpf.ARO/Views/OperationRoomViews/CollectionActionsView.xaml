@@ -4,38 +4,151 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
-             xmlns:converters="clr-namespace:HS.Wpf.Shared.Converters;assembly=HS.Wpf.Shared"
+            
              xmlns:dt="clr-namespace:HS.Wpf.ARO.DesingTime"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="3500"
              d:DataContext="{d:DesignInstance Type=dt:OperationRoomCollectionActionsViewModelDesingTime, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/HS.Wpf.Shared;component/Theme/Generics.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HS.Wpf.ARO;component/Views/OperationRoomViews/CollectionActionsViewResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <DataGrid ItemsSource="{Binding Actions}" 
+    <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Width="{Binding Path=Width, ElementName=datagrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{ Binding ElementName=Column1, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column2, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column3, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column4, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column5, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column6, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column7, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column8, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column9, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column10, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column11, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column12, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column13, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column14, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column15, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column16, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column17, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column18, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column19, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column20, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column21, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column22, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column23, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column24, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column25, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column26, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column27, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column28, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column29, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column30, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column31, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column32, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column33, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column34, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column35, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column36, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column37, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column38, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column39, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column40, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column41, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column42, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column43, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column44, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column45, Path=ActualWidth}" />
+                    <ColumnDefinition Width="{ Binding ElementName=Column46, Path=ActualWidth}" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Gray" Background="Blue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
+                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">ZÁKLADNÍ INFORMACE</Label>
+                </Border>
+                <Border Grid.Column="3" Grid.ColumnSpan="5" BorderBrush="Gray" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
+                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">RIZIKA</Label>
+                </Border>
+                <Border Grid.Column="8" Grid.ColumnSpan="29" BorderBrush="Gray" Background="Green" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
+                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">VÝKONY</Label>
+                </Border>
+                <Border Grid.Column="37" Grid.ColumnSpan="9" BorderBrush="Gray" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
+                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">KOMPLIKACE</Label>
+                </Border>
+            </Grid>
+            <DataGrid x:Name="datagrid" Grid.Row="1" ItemsSource="{Binding Actions}" RowHeaderWidth="0"
                   AutoGenerateColumns="False" 
-                  SelectedItem="{Binding SelectedAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                  IsReadOnly="True"
-                  CanUserAddRows="False"
+                  SelectedItem="{Binding SelectedAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionActionsView}}}"
+                  IsReadOnly="False"
+                  BeginningEdit="dataGridStats_BeginningEdit"
+                  CanUserAddRows="True"
                   CanUserResizeRows="False"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum úkonu" Binding="{Binding Model.IssueDate, StringFormat=d}" />
-                <DataGridTextColumn Header="Popis" Binding="{Binding Model.Description}" />
-                <DataGridTextColumn Header="Q1" Width="1*" Binding="{Binding Model.Q1, Converter={StaticResource BoolToStringConverter}}" />
-                <DataGridTextColumn Header="Q2" Width="1*" Binding="{Binding Model.Q2, Converter={StaticResource BoolToStringConverter}}" />
-                <DataGridTextColumn Header="Q3" Width="1*" Binding="{Binding Model.Q3, Converter={StaticResource BoolToStringConverter}}" />
-                <DataGridTextColumn Header="Q4" Width="1*" Binding="{Binding Model.Q4, Converter={StaticResource BoolToStringConverter}}" />
-                <DataGridTextColumn Header="Q5" Width="1*" Binding="{Binding Model.Q5, Converter={StaticResource BoolToStringConverter}}" />
-                <DataGridTextColumn Header="Změněno" Width="1*" Binding="{Binding Model.Modified}" />
-                <DataGridTextColumn Header="Vytvořeno" Width="*" Binding="{Binding Model.Created}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Datum" MinWidth="100" x:Name="Column1" Binding="{Binding Model.IssueDate, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Popis" MinWidth="50" x:Name="Column2" Binding="{Binding Model.Description}"/>
+                    <DataGridTextColumn Header="Narození" MinWidth="50" x:Name="Column3" Binding="{Binding Model.Birthday}"/>
+                    <DataGridTextColumn Header="Riziko" MinWidth="50" x:Name="Column4" Binding="{Binding Model.Risks_Risks, Converter={StaticResource AsaXToStringConverter}}"/>
+                    <DataGridTextColumn Header="RA" MinWidth="50" x:Name="Column5" Binding="{Binding Model.Risks_RA, Converter={StaticResource AsaXToStringConverter}}"/>
+                    <DataGridTextColumn Header="UPS" MinWidth="50" x:Name="Column6" Binding="{Binding Model.Risks_Ups, Converter={StaticResource AsaXToStringConverter}}"/>
+                    <DataGridTextColumn Header="CA" MinWidth="50" x:Name="Column7" Binding="{Binding Model.Risks_CombA, Converter={StaticResource AsaXToStringConverter}}"/>
+                    <DataGridTextColumn Header="Nad 65 let" MinWidth="50" x:Name="Column8" Binding="{Binding Model.Risks_Over65Years, Converter={StaticResource AsaXToStringConverter}}"/>
+
+                    <DataGridTextColumn Header="CA+OTI" MinWidth="50" x:Name="Column9" Binding="{Binding Model.Perf_CaOti, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="CA+RA" MinWidth="50" x:Name="Column10" Binding="{Binding Model.Perf_CaLm, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="CA+LM" MinWidth="50" x:Name="Column11" Binding="{Binding Model.Perf_CaRa, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="CLEA" MinWidth="50" x:Name="Column12" Binding="{Binding Model.Perf_Clea, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="TAC" MinWidth="50" x:Name="Column13" Binding="{Binding Model.Perf_Tac, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="SAA" MinWidth="50" x:Name="Column14" Binding="{Binding Model.Perf_Saa, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="C2-3" MinWidth="50" x:Name="Column15" Binding="{Binding Model.Perf_C23, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="INF" MinWidth="50" x:Name="Column16" Binding="{Binding Model.Perf_Inf, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="AXI" MinWidth="50" x:Name="Column17" Binding="{Binding Model.Perf_Axi, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="FOOT" MinWidth="50" x:Name="Column18" Binding="{Binding Model.Perf_Foot, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="ANALGO" MinWidth="50" x:Name="Column19" Binding="{Binding Model.Perf_Analgo, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="ISCH" MinWidth="50" x:Name="Column20" Binding="{Binding Model.Perf_Isch, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="SCALE BL." MinWidth="50" x:Name="Column21" Binding="{Binding Model.Perf_ScalBlock, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="POPLIT BL." MinWidth="50" x:Name="Column22" Binding="{Binding Model.Perf_PoplitBlock, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Odeslano na ARO" MinWidth="50" x:Name="Column23" Binding="{Binding Model.Perf_SendToAro, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="JDCH" MinWidth="50" x:Name="Column24" Binding="{Binding Model.Perf_Jdch, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Nad 2 hodiny" MinWidth="50" x:Name="Column25" Binding="{Binding Model.Perf_MoreThan2Hours, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="UPS" MinWidth="50" x:Name="Column26" Binding="{Binding Model.Perf_DuringUps, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="UPS nad 65let" MinWidth="50" x:Name="Column27" Binding="{Binding Model.Perf_DuringUps_Over65Years, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="ANES dohled" MinWidth="50" x:Name="Column28" Binding="{Binding Model.Perf_Control, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Bilum. rourky - cévní" MinWidth="50" x:Name="Column29" Binding="{Binding Model.Perf_BilumRourky_Cevni, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Bilum. rourky - hyperdróza" MinWidth="50" x:Name="Column30" Binding="{Binding Model.Perf_BilumRourky_Hyperhydroza, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="65+" MinWidth="50" x:Name="Column31" Binding="{Binding Model.Perf_Over65Years, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="65+ > 2hod" MinWidth="50" x:Name="Column32" Binding="{Binding Model.Perf_Over65Years_MoreThan2Hours, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="65+ RA" MinWidth="50" x:Name="Column33" Binding="{Binding Model.Perf_Over65Years_Ra, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="65+ CA" MinWidth="50" x:Name="Column34" Binding="{Binding Model.Perf_Over65Years_Ca, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="0-19let" MinWidth="50" x:Name="Column35" Binding="{Binding Model.Perf_UpTo19Years, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="0-19let > 2hod" MinWidth="50" x:Name="Column36" Binding="{Binding Model.Perf_UpTo19Years_MoreThan2Hours, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="0-19let RA" MinWidth="50" x:Name="Column37" Binding="{Binding Model.Perf_UpTo19Years_Ra, Converter={StaticResource BoolToStringConverter}}"/>
+
+                    <DataGridTextColumn Header="Nepl. ARO" MinWidth="50" x:Name="Column38" Binding="{Binding Model.Compl_UnplanedAro, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Poranění během anestezie" MinWidth="50" x:Name="Column39" Binding="{Binding Model.Compl_HurtDuringA, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Obtížné OTI" MinWidth="50" x:Name="Column40" Binding="{Binding Model.Compl_Oti, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Neplánovaná OTI" MinWidth="50" x:Name="Column41" Binding="{Binding Model.Compl_UnplanedOti, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Neúspěšná OTI" MinWidth="50" x:Name="Column42" Binding="{Binding Model.Compl_FailedOti, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Selhání RA" MinWidth="50" x:Name="Column43" Binding="{Binding Model.Compl_FailedRa, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Punkce dury CCF" MinWidth="50" x:Name="Column44" Binding="{Binding Model.Compl_Ccf, Converter={StaticResource BoolToStringConverter}}"/>
+                    <DataGridTextColumn Header="Mors In Tabula" MinWidth="50" x:Name="Column45" Binding="{Binding Model.Compl_MorsInTabula, Converter={StaticResource BoolToStringConverter}}"/>
+                    <!--<ctrl:BooleanDataGridComboBoxColumn Header="Selhání stroje" MinWidth="50" x:Name="Column46" 
+                                            SelectedValueBinding="{Binding Model.Compl_FailedMachine}"/>-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    <!--</ScrollViewer>-->
 </UserControl>

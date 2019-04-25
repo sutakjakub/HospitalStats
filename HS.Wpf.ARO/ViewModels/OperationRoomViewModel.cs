@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using AutoMapper;
+using FizzWare.NBuilder;
+using HS.Wpf.ARO.Models;
 
 namespace HS.Wpf.ARO.ViewModels
 {
@@ -42,10 +44,37 @@ namespace HS.Wpf.ARO.ViewModels
 
         }
 
+        protected void OnSelectedActionChanged()
+        {
+
+        }
+
         public void LoadData()
         {
-            var data = _uow.OperationRoomRepository.Entities.ToList();
-            var list = _mapper.Map<IList<OperationRoomActionViewModel>>(data);
+            //vm.Model = ViewModelSource.Create(()=> new Models.OperationRoomActionModel());
+            //vm.Model.Created = DateTime.Now;
+            //vm.Model.
+
+            //var data = _uow.OperationRoomRepository.Entities.ToList();
+            //var list = _mapper.Map<IList<OperationRoomActionViewModel>>(data);
+
+            
+            var list = new List<OperationRoomActionViewModel>();
+            var vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model =  Builder<OperationRoomActionModel>.CreateNew().Build();
+            list.Add(vm);
+            vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model = Builder<OperationRoomActionModel>.CreateNew().Build();
+            list.Add(vm);
+            vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model = Builder<OperationRoomActionModel>.CreateNew().Build();
+            list.Add(vm);
+            vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model = Builder<OperationRoomActionModel>.CreateNew().Build();
+            list.Add(vm);
+            vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model = Builder<OperationRoomActionModel>.CreateNew().Build();
+            list.Add(vm);
 
             CollectionActions.LoadData(list);
         }

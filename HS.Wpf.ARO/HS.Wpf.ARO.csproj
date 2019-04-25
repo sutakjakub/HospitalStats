@@ -69,6 +69,7 @@
     <Compile Include="Models\OperationRoomActionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OperationRoomActionEditViewModel.cs" />
     <Compile Include="ViewModels\OperationRoomActionViewModel.cs" />
     <Compile Include="ViewModels\OperationRoomCollectionActionsViewModel.cs" />
     <Compile Include="ViewModels\OperationRoomViewModel.cs" />
@@ -107,6 +108,10 @@
     <Page Include="Views\OperationRoomViews\AddOrActionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OperationRoomViews\CollectionActionsViewResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OperationRoomViews\CollectionActionsView.xaml">
       <SubType>Designer</SubType>
