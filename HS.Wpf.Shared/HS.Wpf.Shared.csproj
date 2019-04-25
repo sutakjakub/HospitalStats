@@ -45,6 +45,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BooleanDataGridComboBoxColumn.cs" />
     <Compile Include="Converters\AsaXToStringConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="DesingTime\BooleanComboBoxItemDesingTime.cs" />
@@ -66,8 +67,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

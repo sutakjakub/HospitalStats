@@ -12,9 +12,9 @@ namespace HS.Wpf.Shared.Controls
     {
         public BooleanDataGridComboBoxColumn()
         {
-            ItemsSource = new List<string>();
-            //DisplayMemberPath = "Display";
-            //SelectedValuePath = "Value";
+            ItemsSource = BooleanSource.Items;
+            DisplayMemberPath = "Display";
+            SelectedValuePath = "Value";
         }
     }
 }

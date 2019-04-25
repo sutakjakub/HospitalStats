@@ -30,8 +30,6 @@
                     Command="{Binding LoadDataCommand}" />
         </StackPanel>
 
-        <local:CollectionActionsView DataContext="{Binding CollectionActions}" 
-                                     SelectedAction="{Binding Path=DataContext.SelectedAction, ElementName=LayoutRoot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                     Grid.Row="1" Grid.Column="0" />
+        <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" />
     </Grid>
 </UserControl>

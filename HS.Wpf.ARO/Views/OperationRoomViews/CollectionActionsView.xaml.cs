@@ -33,7 +33,7 @@ namespace HS.Wpf.ARO.Views.OperationRoomViews
 
         public CollectionActionsView()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
 
         private void dataGridStats_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
