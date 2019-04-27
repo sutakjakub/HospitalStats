@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:HS.Wpf.Shared.Converters"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              mc:Ignorable="d">
     <converters:BoolToStringConverter x:Key="BoolToStringConverter" />
     <converters:AsaXToStringConverter x:Key="AsaXToStringConverter" />
+    <dxmvvm:BooleanNegationConverter x:Key="BooleanNegationConverter" />
 </ResourceDictionary>

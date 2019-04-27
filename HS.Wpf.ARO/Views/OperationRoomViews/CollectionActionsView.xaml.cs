@@ -38,10 +38,10 @@ namespace HS.Wpf.ARO.Views.OperationRoomViews
 
         private void dataGridStats_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
-            if (e.Row.GetIndex() != 0)
-            {
-                e.Cancel = true;
-            }
+            //if (e.Row.GetIndex() != 0)
+            //{
+            //    e.Cancel = true;
+            //}
         }
     }
 }

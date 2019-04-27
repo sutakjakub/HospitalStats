@@ -8,6 +8,7 @@ namespace HS.Wpf.ARO.Models
 {
     public class OperationRoomActionModel
     {
+        #region model properties
         public virtual int Id { get; set; }
 
         public virtual DateTime Created { get; set; }
@@ -17,7 +18,6 @@ namespace HS.Wpf.ARO.Models
         public virtual string Description { get; set; }
         public virtual DateTime IssueDate { get; set; }
         public virtual DateTime Birthday { get; set; }
-
 
         /// <summary>
         /// Rizika - Rizika
@@ -193,5 +193,16 @@ namespace HS.Wpf.ARO.Models
         /// Komplikace - 9) selhani anes pristroje
         /// </summary>
         public virtual bool Compl_FailedMachine { get; set; }
+        #endregion
+
+        public virtual bool Is65YearsOld { get; set; }
+        public virtual bool IsUnder19YearsOld { get; set; }
+
+        public void CalculateYearsOld()
+        {
+            var years = IssueDate.Year - Birthday.Year;
+            Is65YearsOld = years >= 65;
+            IsUnder19YearsOld = years <= 19;
+        }
     }
 }
