@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace HS.Wpf.ARO.Models
 {
-    public class OperationRoomActionModel
+    public class OperationRoomActionModel : IEditableObject
     {
+        private OperationRoomActionModel modelState;
+        private bool _isNew;
+
         #region model properties
         public virtual int Id { get; set; }
 
@@ -195,14 +200,121 @@ namespace HS.Wpf.ARO.Models
         public virtual bool Compl_FailedMachine { get; set; }
         #endregion
 
-        public virtual bool Is65YearsOld { get; set; }
-        public virtual bool IsUnder19YearsOld { get; set; }
+        public virtual bool IsDirty { get; set; }
+
+        public OperationRoomActionModel()
+        {
+        }
+
+        public OperationRoomActionModel(bool isNew)
+        {
+            _isNew = isNew;
+            if (isNew)
+            {
+                IsDirty = true;
+                IssueDate = DateTime.Now.Date;
+            }
+        }
+            
+        protected void OnBirthdayChanged()
+        {
+            CalculateYearsOld();
+        }
+
+        protected void OnIssueDateChanged()
+        {
+            CalculateYearsOld();
+        }
 
         public void CalculateYearsOld()
         {
             var years = IssueDate.Year - Birthday.Year;
-            Is65YearsOld = years >= 65;
-            IsUnder19YearsOld = years <= 19;
+            Perf_Over65Years = years >= 65;
+            Perf_UpTo19Years = years <= 19;
+        }
+
+        public void SaveModelState()
+        {
+            var json = JsonConvert.SerializeObject(this);
+            modelState = JsonConvert.DeserializeObject<OperationRoomActionModel>(json);
+        }
+
+        public void BeginEdit()
+        {
+        }
+
+        public void EndEdit()
+        {
+            if (_isNew) return;
+
+            if (IsSame(modelState, this))
+            {
+                IsDirty = false;
+            }
+            else
+            {
+                IsDirty = true;
+            }
+        }
+
+        public void CancelEdit()
+        {
+        }
+
+        private bool IsSame(OperationRoomActionModel m1, OperationRoomActionModel m2)
+        {
+            return
+                m1.Birthday == m2.Birthday &&
+                m1.Compl_Ccf == m2.Compl_Ccf &&
+                m1.Compl_FailedMachine == m2.Compl_FailedMachine &&
+                m1.Compl_FailedOti == m2.Compl_FailedOti &&
+                m1.Compl_FailedRa == m2.Compl_FailedRa &&
+                m1.Compl_HurtDuringA == m2.Compl_HurtDuringA &&
+                m1.Compl_MorsInTabula == m2.Compl_MorsInTabula &&
+                m1.Compl_Oti == m2.Compl_Oti &&
+                m1.Compl_UnplanedAro == m2.Compl_UnplanedAro &&
+                m1.Compl_UnplanedOti == m2.Compl_UnplanedOti &&
+                m1.Created == m2.Created &&
+                m1.Description == m2.Description &&
+                m1.Id == m2.Id &&
+                m1.IsDeleted == m2.IsDeleted &&
+                m1.IssueDate == m2.IssueDate &&
+                m1.Modified == m2.Modified &&
+                m1.Perf_Analgo == m2.Perf_Analgo &&
+                m1.Perf_Axi == m2.Perf_Axi &&
+                m1.Perf_BilumRourky_Cevni == m2.Perf_BilumRourky_Cevni &&
+                m1.Perf_BilumRourky_Hyperhydroza == m2.Perf_BilumRourky_Hyperhydroza &&
+                m1.Perf_C23 == m2.Perf_C23 &&
+                m1.Perf_CaLm == m2.Perf_CaLm &&
+                m1.Perf_CaOti == m2.Perf_CaOti &&
+                m1.Perf_CaRa == m2.Perf_CaRa &&
+                m1.Perf_Clea == m2.Perf_Clea &&
+                m1.Perf_Control == m2.Perf_Control &&
+                m1.Perf_DuringUps == m2.Perf_DuringUps &&
+                m1.Perf_DuringUps_Over65Years == m2.Perf_DuringUps_Over65Years &&
+                m1.Perf_Foot == m2.Perf_Foot &&
+                m1.Perf_Inf == m2.Perf_Inf &&
+                m1.Perf_Isch == m2.Perf_Isch &&
+                m1.Perf_Jdch == m2.Perf_Jdch &&
+                m1.Perf_MoreThan2Hours == m2.Perf_MoreThan2Hours &&
+                m1.Perf_Over65Years == m2.Perf_Over65Years &&
+                m1.Perf_Over65Years_Ca == m2.Perf_Over65Years_Ca &&
+                m1.Perf_Over65Years_MoreThan2Hours == m2.Perf_Over65Years_MoreThan2Hours &&
+                m1.Perf_Over65Years_Ra == m2.Perf_Over65Years_Ra &&
+                m1.Perf_PoplitBlock == m2.Perf_PoplitBlock &&
+                m1.Perf_Saa == m2.Perf_Saa &&
+                m1.Perf_ScalBlock == m2.Perf_ScalBlock &&
+                m1.Perf_SendToAro == m2.Perf_SendToAro &&
+                m1.Perf_Tac == m2.Perf_Tac &&
+                m1.Perf_UpTo19Years == m2.Perf_UpTo19Years &&
+                m1.Perf_UpTo19Years_MoreThan2Hours == m2.Perf_UpTo19Years_MoreThan2Hours &&
+                m1.Perf_UpTo19Years_Ra == m2.Perf_UpTo19Years_Ra &&
+                m1.Risks_CombA == m2.Risks_CombA &&
+                m1.Risks_Over65Years == m2.Risks_Over65Years &&
+                m1.Risks_RA == m2.Risks_RA &&
+                m1.Risks_Risks == m2.Risks_Risks &&
+                m1.Risks_Ups == m2.Risks_Ups;
+
         }
     }
 }

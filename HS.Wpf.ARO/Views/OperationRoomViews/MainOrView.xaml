@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1200"
              x:Name="LayoutRoot">
@@ -22,12 +23,27 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button Content="Přidat" Style="{StaticResource ResourceKey=actionBarButton}"/>
-            <Button Content="Editovat" Style="{StaticResource ResourceKey=actionBarButton}"/>
-            <Button Content="Smazat" Style="{StaticResource ResourceKey=actionBarButton}"/>
-            <Button Content="Načíst data" Margin="40 0 0 0" 
-                    Style="{StaticResource ResourceKey=actionBarButton}"
-                    Command="{Binding LoadDataCommand}" />
+            <Button fa:Awesome.Content="Plus" 
+                    Foreground="Green" 
+                    TextElement.FontSize="40" 
+                    Width="40"
+                    Height="40"
+                    Style="{StaticResource TransparentButton}"
+                    Command="{Binding AddCommand}" />
+            <Button fa:Awesome.Content="Save" 
+                    Foreground="Blue" 
+                    TextElement.FontSize="40" 
+                    Width="40"
+                    Height="40"
+                    Style="{StaticResource TransparentButton}"
+                    Command="{Binding SaveCommand}"/>
+            
+            <Button fa:Awesome.Content="Refresh" Margin="40 0 0 0" 
+                    Style="{StaticResource TransparentButton}"
+                    Command="{Binding LoadDataCommand}"
+                    TextElement.FontSize="40" 
+                    Width="40"
+                    Height="40" />
         </StackPanel>
 
         <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" />

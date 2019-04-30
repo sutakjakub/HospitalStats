@@ -39,5 +39,13 @@ namespace HS.Data.Repositories
             _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
+
+        public void Remove(int id)
+        {
+            var entity = _dbSet.Find(id);
+            if (entity == null) throw new ArgumentException($"Položka {id} neexistuje. Nelze smazat.");
+
+            Remove(entity);
+        }
     }
 }

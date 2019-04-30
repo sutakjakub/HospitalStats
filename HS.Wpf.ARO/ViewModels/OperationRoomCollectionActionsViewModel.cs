@@ -1,4 +1,6 @@
 ﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
+using HS.Wpf.ARO.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +22,15 @@ namespace HS.Wpf.ARO.ViewModels
         {
             //TODO: dispatcher
             Actions = new ObservableCollection<OperationRoomActionViewModel>(data);
+        }
+
+        public void AddEmptyAction()
+        {
+            var vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
+            vm.Model = ViewModelSource.Create(() => new OperationRoomActionModel(true));
+            vm.Model.SaveModelState();
+
+            Actions.Insert(0, vm);
         }
     }
 }

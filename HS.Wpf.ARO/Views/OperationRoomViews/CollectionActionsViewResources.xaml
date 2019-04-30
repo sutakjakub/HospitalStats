@@ -11,16 +11,40 @@
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="FontSize" Value="15" />
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="Segoe UI" />
     </Style>
-    
+
+    <Style x:Key="DefaultDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="BorderThickness" Value="0.5"/>
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Padding" Value="5 0"/>
+    </Style>
+
+    <Style x:Key="InfoDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}">
+        <Setter Property="Background" Value="#cce6ff"/>
+    </Style>
+
+    <Style x:Key="RisksDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}">
+        <Setter Property="Background" Value="#ffedcc"/>
+    </Style>
+
+    <Style x:Key="PerfDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}">
+        <Setter Property="Background" Value="#ccffcc"/>
+    </Style>
+
+    <Style x:Key="ComplDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}">
+        <Setter Property="Background" Value="#f9f2ec"/>
+    </Style>
+
     <Style x:Key="DefaultDataGridCellStyle" TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderBrush" Value="Silver" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Padding" Value="5 0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <Grid Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -34,7 +58,10 @@
 
     <Style x:Key="InfoDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
         <Setter Property="Background" Value="#ccd9ff"/>
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style x:Key="InfoNotEditableDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource InfoDataGridCellStyle}">
+        <Setter Property="Background" Value="Silver"/>
     </Style>
 
     <Style x:Key="RisksDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
@@ -42,7 +69,7 @@
     </Style>
     <Style x:Key="RisksUnder65DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RisksDataGridCellStyle}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.Is65YearsOld}" Value="False">
+            <DataTrigger Binding="{Binding Model.Perf_Over65Years}" Value="False">
                 <Setter Property="Background" Value="Silver"/>
             </DataTrigger>
         </Style.Triggers>
@@ -53,14 +80,14 @@
     </Style>
     <Style x:Key="PerfUnder65DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PerfDataGridCellStyle}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.Is65YearsOld}" Value="False">
+            <DataTrigger Binding="{Binding Model.Perf_Over65Years}" Value="False">
                 <Setter Property="Background" Value="Silver"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="PerfUnder19DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PerfDataGridCellStyle}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.IsUnder19YearsOld}" Value="False">
+            <DataTrigger Binding="{Binding Model.Perf_UpTo19Years}" Value="False">
                 <Setter Property="Background" Value="Silver"/>
             </DataTrigger>
         </Style.Triggers>
@@ -70,15 +97,25 @@
         <Setter Property="Background" Value="#ecd9c6" />
     </Style>
 
-    <Style TargetType="{x:Type DataGridRow}">
-        <Setter Property="Height" Value="30" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="Silver" />
+    <Style x:Key="ActionsDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="Blue" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Background" Value="White" />
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="{x:Type DataGridRow}">
+        <Setter Property="Height" Value="40" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="BorderThickness" Value="0 2" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>

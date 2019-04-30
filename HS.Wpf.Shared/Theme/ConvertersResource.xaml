@@ -9,4 +9,5 @@
     <converters:BoolToStringConverter x:Key="BoolToStringConverter" />
     <converters:AsaXToStringConverter x:Key="AsaXToStringConverter" />
     <dxmvvm:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+    <dxmvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 </ResourceDictionary>

@@ -18,7 +18,12 @@ namespace HS.Wpf
                 {
                     return ViewModelSource.Create(() => new ARO.Models.OperationRoomActionModel());
                 })
-                .AfterMap((src, dest) => dest.CalculateYearsOld());
+                .ForMember(x => x.IsDirty, opt => opt.Ignore())
+                .AfterMap((src, dest) =>
+                {
+                    dest.CalculateYearsOld();
+                    dest.SaveModelState();
+                });
 
             CreateMap<ARO.ViewModels.OperationRoomActionViewModel, Data.Entitites.ARO.OperationRoomAction>()
                 .ConstructUsing((source, ctx) =>

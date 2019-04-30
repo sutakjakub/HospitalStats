@@ -11,6 +11,7 @@ namespace HS.Data.Repositories
     {
         IQueryable<T> Entities { get; }
         void Remove(T entity);
+        void Remove(int id);
         void Add(T entity);
         void Update(T entity);
 

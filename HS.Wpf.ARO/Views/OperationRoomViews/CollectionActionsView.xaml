@@ -17,224 +17,189 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Width="{Binding Path=Width, ElementName=datagrid}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{ Binding ElementName=Column0, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column1, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column2, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column3, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column4, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column5, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column6, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column7, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column8, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column9, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column10, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column11, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column12, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column13, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column14, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column15, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column16, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column17, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column18, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column19, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column20, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column21, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column22, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column23, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column24, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column25, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column26, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column27, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column28, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column29, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column30, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column31, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column32, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column33, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column34, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column35, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column36, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column37, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column38, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column39, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column40, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column41, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column42, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column43, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column44, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column45, Path=ActualWidth}" />
-                    <ColumnDefinition Width="{ Binding ElementName=Column46, Path=ActualWidth}" />
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="1" Grid.ColumnSpan="4" BorderBrush="Gray" Background="Blue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
-                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">ZÁKLADNÍ INFORMACE</Label>
-                </Border>
-                <Border Grid.Column="4" Grid.ColumnSpan="5" BorderBrush="Gray" Background="Orange" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
-                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">RIZIKA</Label>
-                </Border>
-                <Border Grid.Column="9" Grid.ColumnSpan="29" BorderBrush="Gray" Background="Green" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
-                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">VÝKONY</Label>
-                </Border>
-                <Border Grid.Column="38" Grid.ColumnSpan="9" BorderBrush="Gray" Background="#996633" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
-                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">KOMPLIKACE</Label>
-                </Border>
-            </Grid>
-            <DataGrid x:Name="datagrid" Grid.Row="1" ItemsSource="{Binding Actions}" RowHeaderWidth="0"
+    <Grid>
+        <DataGrid x:Name="datagrid" Grid.Row="1" ItemsSource="{Binding Actions}" RowHeaderWidth="0"
                   AutoGenerateColumns="False" 
                   SelectedItem="{Binding SelectedAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionActionsView}}}"
                   IsReadOnly="False"
                   BeginningEdit="dataGridStats_BeginningEdit"
-                  CanUserAddRows="True"
+                  CanUserAddRows="False"
                   CanUserResizeRows="False"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
-                  FrozenColumnCount ="4">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Akce" MinWidth="50" x:Name="Column0">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <Button>
-                                        <fa:FontAwesome Icon="Edit" />
-                                    </Button>
-                                    <Button>
-                                        <fa:FontAwesome Icon="Remove" />
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Datum" MinWidth="50" x:Name="Column1" 
-                                        Binding="{Binding Model.IssueDate, StringFormat=d}"
-                                        CellStyle="{StaticResource InfoDataGridCellStyle}" />
-                    <DataGridTextColumn Header="Popis" MinWidth="50" x:Name="Column2" 
-                                        Binding="{Binding Model.Description}"
-                                        CellStyle="{StaticResource InfoDataGridCellStyle}"/>
-                    <DataGridTextColumn Header="Narození" MinWidth="50" x:Name="Column3" 
+                  FrozenColumnCount="6"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  GridLinesVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Akce" MinWidth="50" x:Name="Column0" CellStyle="{StaticResource ActionsDataGridCellStyle}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Button fa:Awesome.Content="Remove" 
+                                        Foreground="Red" 
+                                        TextElement.FontSize="25"
+                                        Style="{StaticResource TransparentButton}"
+                                        Command="{Binding DeleteCommand}"/>
+                                <fa:FontAwesome Icon="Pencil" 
+                                                Foreground="Blue" 
+                                                Margin="5 0 0 0"
+                                                TextElement.FontSize="20"
+                                                Visibility="{Binding Model.IsDirty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Datum" MinWidth="50" x:Name="Column1" 
+                                    Binding="{Binding Model.IssueDate, StringFormat=d}"
+                                    CellStyle="{StaticResource InfoDataGridCellStyle}" HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Header="Popis" MinWidth="50" x:Name="Column2" 
+                                    Binding="{Binding Model.Description}"
+                                    CellStyle="{StaticResource InfoDataGridCellStyle}" HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Narození" MinWidth="50" x:Name="Column3" 
                                         Binding="{Binding Model.Birthday, StringFormat=d}"
-                                        CellStyle="{StaticResource InfoDataGridCellStyle}"/>
+                                        CellStyle="{StaticResource InfoDataGridCellStyle}" HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="0-19 let" MinWidth="50" x:Name="Column35" 
+                                                    SelectedValueBinding="{Binding Model.Perf_UpTo19Years}"
+                                                    IsReadOnly="{Binding Model.Perf_UpTo19Years}"
+                                                    CellStyle="{StaticResource InfoNotEditableDataGridCellStyle}" 
+                                                    HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="65+ let" MinWidth="50" x:Name="Column31" 
+                                                    SelectedValueBinding="{Binding Model.Perf_Over65Years}"
+                                                    IsReadOnly="{Binding Model.Perf_Over65Years}"
+                                                    CellStyle="{StaticResource InfoNotEditableDataGridCellStyle}"
+                                                    HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
 
-                    <DataGridTextColumn Header="Riziko" MinWidth="50" x:Name="Column4" Binding="{Binding Model.Risks_Risks, Converter={StaticResource AsaXToStringConverter}}"
-                                        CellStyle="{StaticResource RisksDataGridCellStyle}"/>
-                    <DataGridTextColumn Header="RA" MinWidth="50" x:Name="Column5" 
+                <DataGridTextColumn Header="Riziko" MinWidth="50" x:Name="Column4" Binding="{Binding Model.Risks_Risks, Converter={StaticResource AsaXToStringConverter}}"
+                                        CellStyle="{StaticResource RisksDataGridCellStyle}" HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Header="RA" MinWidth="50" x:Name="Column5" 
                                         Binding="{Binding Model.Risks_RA, Converter={StaticResource AsaXToStringConverter}}"
-                                        CellStyle="{StaticResource RisksDataGridCellStyle}" />
-                    <DataGridTextColumn Header="UPS" MinWidth="50" x:Name="Column6" 
+                                        CellStyle="{StaticResource RisksDataGridCellStyle}" HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="UPS" MinWidth="50" x:Name="Column6" 
                                         Binding="{Binding Model.Risks_Ups, Converter={StaticResource AsaXToStringConverter}}"
-                                        CellStyle="{StaticResource RisksDataGridCellStyle}"/>
-                    <DataGridTextColumn Header="CA" MinWidth="50" x:Name="Column7" 
+                                        CellStyle="{StaticResource RisksDataGridCellStyle}" HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="CA" MinWidth="50" x:Name="Column7" 
                                         Binding="{Binding Model.Risks_CombA, Converter={StaticResource AsaXToStringConverter}}"
-                                        CellStyle="{StaticResource RisksDataGridCellStyle}" />
-                    <DataGridTextColumn Header="Nad 65 let" MinWidth="50" x:Name="Column8" 
+                                        CellStyle="{StaticResource RisksDataGridCellStyle}" HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Nad 65 let" MinWidth="50" x:Name="Column8" 
                                         Binding="{Binding Model.Risks_Over65Years, Converter={StaticResource AsaXToStringConverter}}"
-                                        IsReadOnly="{Binding Model.Is65YearsOld}"
-                                        CellStyle="{StaticResource RisksUnder65DataGridCellStyle}" />
+                                        IsReadOnly="{Binding Model.Perf_Over65Years}"
+                                        CellStyle="{StaticResource RisksUnder65DataGridCellStyle}" 
+                                        HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}"/>
 
-                    <ctrl:BooleanDataGridComboBoxColumn Header="CA+OTI" MinWidth="50" x:Name="Column9" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_CaOti}" />
-                    <ctrl:BooleanDataGridComboBoxColumn Header="CA+RA" MinWidth="50" x:Name="Column10" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_CaLm}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="CA+LM" MinWidth="50" x:Name="Column11" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_CaRa}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="CLEA" MinWidth="50" x:Name="Column12" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Clea}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="TAC" MinWidth="50" x:Name="Column13" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Tac}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="SAA" MinWidth="50" x:Name="Column14" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Saa}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="C2-3" MinWidth="50" x:Name="Column15" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_C23}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="INF" MinWidth="50" x:Name="Column16" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Inf}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="AXI" MinWidth="50" x:Name="Column17" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Axi}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="FOOT" MinWidth="50" x:Name="Column18" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Foot}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="ANALGO" MinWidth="50" x:Name="Column19" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Analgo}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="ISCH" MinWidth="50" x:Name="Column20" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Isch}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="SCALE BL." MinWidth="50" x:Name="Column21" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_ScalBlock}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="POPLIT BL." MinWidth="50" x:Name="Column22" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_PoplitBlock}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Odeslano na ARO" MinWidth="50" x:Name="Column23" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_SendToAro}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="JDCH" MinWidth="50" x:Name="Column24" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Jdch}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Nad 2 hodiny" MinWidth="50" x:Name="Column25" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_MoreThan2Hours}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="UPS" MinWidth="50" x:Name="Column26" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_DuringUps}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="UPS nad 65let" MinWidth="50" x:Name="Column27" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_DuringUps_Over65Years}"
-                                                        IsReadOnly="{Binding Model.Is65YearsOld}" />
-                    <ctrl:BooleanDataGridComboBoxColumn Header="ANES dohled" MinWidth="50" x:Name="Column28" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_Control}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Bilum. rourky - cévní" MinWidth="50" x:Name="Column29" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_BilumRourky_Cevni}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Bilum. rourky - hyperdróza" MinWidth="50" x:Name="Column30" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Perf_BilumRourky_Hyperhydroza}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="65+" MinWidth="50" x:Name="Column31" 
-                                                        SelectedValueBinding="{Binding Model.Perf_Over65Years}"
-                                                        IsReadOnly="{Binding Model.Is65YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder65DataGridCellStyle}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="65+ > 2hod" MinWidth="50" x:Name="Column32" 
-                                                        SelectedValueBinding="{Binding Model.Perf_Over65Years_MoreThan2Hours}"
-                                                        IsReadOnly="{Binding Model.Is65YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder65DataGridCellStyle}" />
-                    <ctrl:BooleanDataGridComboBoxColumn Header="65+ RA" MinWidth="50" x:Name="Column33" 
-                                                        SelectedValueBinding="{Binding Model.Perf_Over65Years_Ra}"
-                                                        IsReadOnly="{Binding Model.Is65YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder65DataGridCellStyle}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="65+ CA" MinWidth="50" x:Name="Column34" 
-                                                        SelectedValueBinding="{Binding Model.Perf_Over65Years_Ca}"
-                                                        IsReadOnly="{Binding Model.Is65YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder65DataGridCellStyle}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="0-19let" MinWidth="50" x:Name="Column35" 
-                                                        SelectedValueBinding="{Binding Model.Perf_UpTo19Years}"
-                                                        IsReadOnly="{Binding Model.IsUnder19YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder19DataGridCellStyle}" />
-                    <ctrl:BooleanDataGridComboBoxColumn Header="0-19let > 2hod" MinWidth="50" x:Name="Column36" 
-                                                        SelectedValueBinding="{Binding Model.Perf_UpTo19Years_MoreThan2Hours}"
-                                                        IsReadOnly="{Binding Model.IsUnder19YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder19DataGridCellStyle}" />
-                    <ctrl:BooleanDataGridComboBoxColumn Header="0-19let RA" MinWidth="50" x:Name="Column37" 
-                                                        SelectedValueBinding="{Binding Model.Perf_UpTo19Years_Ra}"
-                                                        IsReadOnly="{Binding Model.IsUnder19YearsOld}"
-                                                        CellStyle="{StaticResource PerfUnder19DataGridCellStyle}" />
+                <ctrl:BooleanDataGridComboBoxColumn Header="CA+OTI" MinWidth="50" x:Name="Column9" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_CaOti}" 
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="CA+RA" MinWidth="50" x:Name="Column10" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_CaLm}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="CA+LM" MinWidth="50" x:Name="Column11" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_CaRa}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="CLEA" MinWidth="50" x:Name="Column12" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Clea}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="TAC" MinWidth="50" x:Name="Column13" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Tac}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="SAA" MinWidth="50" x:Name="Column14" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Saa}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="C2-3" MinWidth="50" x:Name="Column15" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_C23}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="INF" MinWidth="50" x:Name="Column16" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Inf}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="AXI" MinWidth="50" x:Name="Column17" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Axi}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="FOOT" MinWidth="50" x:Name="Column18" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Foot}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="ANALGO" MinWidth="50" x:Name="Column19" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Analgo}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="ISCH" MinWidth="50" x:Name="Column20" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Isch}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="SCALE BL." MinWidth="50" x:Name="Column21" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_ScalBlock}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="POPLIT BL." MinWidth="50" x:Name="Column22" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_PoplitBlock}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Odeslano na ARO" MinWidth="50" x:Name="Column23" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_SendToAro}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="JDCH" MinWidth="50" x:Name="Column24" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Jdch}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Nad 2 hodiny" MinWidth="50" x:Name="Column25" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_MoreThan2Hours}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="UPS" MinWidth="50" x:Name="Column26" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_DuringUps}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="UPS nad 65let" MinWidth="50" x:Name="Column27" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_DuringUps_Over65Years}"
+                                                    IsReadOnly="{Binding Model.Perf_Over65Years}" 
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="ANES dohled" MinWidth="50" x:Name="Column28" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_Control}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Bilum. rourky - cévní" MinWidth="50" x:Name="Column29" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_BilumRourky_Cevni}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Bilum. rourky - hyperdróza" MinWidth="50" x:Name="Column30" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                                                    SelectedValueBinding="{Binding Model.Perf_BilumRourky_Hyperhydroza}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="65+ > 2hod" MinWidth="50" x:Name="Column32" 
+                                                    SelectedValueBinding="{Binding Model.Perf_Over65Years_MoreThan2Hours}"
+                                                    IsReadOnly="{Binding Model.Perf_Over65Years}"
+                                                    CellStyle="{StaticResource PerfUnder65DataGridCellStyle}" 
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="65+ RA" MinWidth="50" x:Name="Column33" 
+                                                    SelectedValueBinding="{Binding Model.Perf_Over65Years_Ra}"
+                                                    IsReadOnly="{Binding Model.Perf_Over65Years}"
+                                                    CellStyle="{StaticResource PerfUnder65DataGridCellStyle}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="65+ CA" MinWidth="50" x:Name="Column34" 
+                                                    SelectedValueBinding="{Binding Model.Perf_Over65Years_Ca}"
+                                                    IsReadOnly="{Binding Model.Perf_Over65Years}"
+                                                    CellStyle="{StaticResource PerfUnder65DataGridCellStyle}"
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="0-19let > 2hod" MinWidth="50" x:Name="Column36" 
+                                                    SelectedValueBinding="{Binding Model.Perf_UpTo19Years_MoreThan2Hours}"
+                                                    IsReadOnly="{Binding Model.Perf_UpTo19Years}"
+                                                    CellStyle="{StaticResource PerfUnder19DataGridCellStyle}" 
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="0-19let RA" MinWidth="50" x:Name="Column37" 
+                                                    SelectedValueBinding="{Binding Model.Perf_UpTo19Years_Ra}"
+                                                    IsReadOnly="{Binding Model.Perf_UpTo19Years}"
+                                                    CellStyle="{StaticResource PerfUnder19DataGridCellStyle}" 
+                                                    HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
 
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Nepl. ARO" MinWidth="50" x:Name="Column38" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_UnplanedAro}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Poranění během anestezie" MinWidth="50" x:Name="Column39" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_HurtDuringA}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Obtížné OTI" MinWidth="50" x:Name="Column40" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_Oti}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Neplánovaná OTI" MinWidth="50" x:Name="Column41" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_UnplanedOti}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Neúspěšná OTI" MinWidth="50" x:Name="Column42" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_FailedOti}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Selhání RA" MinWidth="50" x:Name="Column43" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_FailedRa}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Punkce dury CCF" MinWidth="50" x:Name="Column44" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_Ccf}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Mors In Tabula" MinWidth="50" x:Name="Column45" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_MorsInTabula}"/>
-                    <ctrl:BooleanDataGridComboBoxColumn Header="Selhání stroje" MinWidth="50" x:Name="Column47" CellStyle="{StaticResource ComplDataGridCellStyle}"
-                                                        SelectedValueBinding="{Binding Model.Compl_FailedMachine}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-    </ScrollViewer>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Nepl. ARO" MinWidth="50" x:Name="Column38" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_UnplanedAro}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Poranění během anestezie" MinWidth="50" x:Name="Column39" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_HurtDuringA}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Obtížné OTI" MinWidth="50" x:Name="Column40" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_Oti}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Neplánovaná OTI" MinWidth="50" x:Name="Column41" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_UnplanedOti}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Neúspěšná OTI" MinWidth="50" x:Name="Column42" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_FailedOti}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Selhání RA" MinWidth="50" x:Name="Column43" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_FailedRa}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Punkce dury CCF" MinWidth="50" x:Name="Column44" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_Ccf}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Mors In Tabula" MinWidth="50" x:Name="Column45" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_MorsInTabula}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+                <ctrl:BooleanDataGridComboBoxColumn Header="Selhání stroje" MinWidth="50" x:Name="Column47" CellStyle="{StaticResource ComplDataGridCellStyle}"
+                                                        SelectedValueBinding="{Binding Model.Compl_FailedMachine}" HeaderStyle="{StaticResource ComplDataGridColumnHeaderStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </UserControl>

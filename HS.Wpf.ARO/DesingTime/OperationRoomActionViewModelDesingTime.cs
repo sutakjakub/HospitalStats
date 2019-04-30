@@ -22,8 +22,6 @@ namespace HS.Wpf.ARO.DesingTime
                 .With(p => p.Risks_Risks = gen.Next(-5, 5))
                 .With(p => p.Risks_Ups = gen.Next(-5, 5))
                 .Build();
-
-            InitModel(Model);
         }
     }
 }
