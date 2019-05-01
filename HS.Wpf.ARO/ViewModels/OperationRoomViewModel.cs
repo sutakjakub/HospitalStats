@@ -27,6 +27,9 @@ namespace HS.Wpf.ARO.ViewModels
         public virtual OperationRoomCollectionActionsViewModel CollectionActions { get; set; }
         public virtual OperationRoomActionViewModel SelectedAction { get; set; }
 
+        public virtual DateTime FromDate { get; set; }
+        public virtual DateTime ToDate { get; set; }
+
         public OperationRoomViewModel(IMapper mapper, AroUnitOfWork uow)
         {
             _uow = uow ?? throw new ArgumentNullException(nameof(uow));
@@ -34,7 +37,10 @@ namespace HS.Wpf.ARO.ViewModels
 
             CollectionActions = ViewModelSource.Create(() => new OperationRoomCollectionActionsViewModel());
             Messenger.Default.Register<DeleteOrMessage>(this, Delete);
-            //Messenger.Default.Register<SaveOrMessage>(this, Save);
+
+            var now = DateTime.Now.Date;
+            FromDate = new DateTime(now.Year, now.Month, 1);
+            ToDate = now;
         }
 
         public void Save()

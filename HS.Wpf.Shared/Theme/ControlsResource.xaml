@@ -32,4 +32,22 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="FilterLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style x:Key="FilterDatePicker" TargetType="{x:Type DatePicker}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style x:Key="CalendarDatePicker" TargetType="{x:Type Calendar}">
+        <Setter Property="CalendarDayButtonStyle">
+            <Setter.Value>
+                <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
