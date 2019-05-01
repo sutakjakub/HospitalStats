@@ -41,7 +41,8 @@ namespace HS.Wpf.ARO.ViewModels
         {
             try
             {
-                var list = _mapper.Map<IList<OperationRoomAction>>(CollectionActions.Actions.Select(s => s.Model.IsDirty));
+                var data = CollectionActions.Actions.Where(s => s.Model.IsDirty);
+                var list = _mapper.Map<IList<OperationRoomAction>>(data);
                 foreach (var item in list)
                 {
                     if (item.Id > 0)
