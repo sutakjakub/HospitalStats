@@ -75,14 +75,6 @@ namespace HS.Data
                     .Build();
 
                 ctx.OperationRoomActions.AddRange(list);
-                ctx.OperationRoomActions.Add(new OperationRoomAction()
-                {
-                    Created = DateTime.Now,
-                    Description = "JŠ",
-                    IsDeleted = false,
-                    IssueDate = DateTime.Now.Date.AddDays(-10),
-                    Modified = DateTime.Now
-                });
                 ctx.SaveChanges();
             }
         }

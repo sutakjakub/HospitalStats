@@ -16,6 +16,7 @@ namespace HS.Wpf.ARO.ViewModels
 
         public OperationRoomCollectionActionsViewModel()
         {
+            Actions = new ObservableCollection<OperationRoomActionViewModel>();
         }
 
         public void LoadData(IList<OperationRoomActionViewModel> data)
