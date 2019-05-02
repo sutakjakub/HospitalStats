@@ -22,7 +22,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" MinHeight="200"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="0 10 0 5">
@@ -67,5 +69,11 @@
         </StackPanel>
 
         <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" />
+
+        <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" />
+        
+        <ScrollViewer Grid.Row="3" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top">
+            <local:StatsOrView x:Name="statsView" DataContext="{Binding Stats}" />
+        </ScrollViewer>
     </Grid>
 </UserControl>

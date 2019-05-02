@@ -8,7 +8,7 @@
              xmlns:ctrl="clr-namespace:HS.Wpf.Shared.Controls;assembly=HS.Wpf.Shared"
              xmlns:dt="clr-namespace:HS.Wpf.ARO.DesingTime"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="3500"
+             d:DesignHeight="450" d:DesignWidth="4200"
              d:DataContext="{d:DesignInstance Type=dt:OperationRoomCollectionActionsViewModelDesingTime, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -89,7 +89,7 @@
                                         HeaderStyle="{StaticResource RisksDataGridColumnHeaderStyle}"/>
 
                 <ctrl:BooleanDataGridComboBoxColumn Header="CA+OTI" MinWidth="50" x:Name="Column9" CellStyle="{StaticResource PerfDataGridCellStyle}"
-                                                    SelectedValueBinding="{Binding Model.Perf_CaOti}" 
+                                                    SelectedValueBinding="{Binding Model.Perf_CaOti}"
                                                     HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
                 <ctrl:BooleanDataGridComboBoxColumn Header="CA+RA" MinWidth="50" x:Name="Column10" CellStyle="{StaticResource PerfDataGridCellStyle}"
                                                     SelectedValueBinding="{Binding Model.Perf_CaLm}"

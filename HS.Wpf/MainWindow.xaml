@@ -17,6 +17,6 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
-        <aro:MainView DataContext="{Binding DataContextConcrete}" />
+        <aro:MainView DataContext="{Binding DataContextConcrete}" Margin="10" />
     </DockPanel>
 </Window>

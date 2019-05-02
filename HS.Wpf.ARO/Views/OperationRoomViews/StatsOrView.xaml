@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="HS.Wpf.ARO.Views.OperationRoomViews.StatsOrView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
+             xmlns:charts="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:ctrl="clr-namespace:HS.Wpf.Shared.Controls;assembly=HS.Wpf.Shared"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800"
+             Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HS.Wpf.ARO;component/Views/OperationRoomViews/StatsOrViewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Komplikace" MinWidth="200" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}">
+            <ctrl:TwoColumnGrid>
+                <Label Content="Neplánované ARO" />
+                <Label Content="{Binding Compl_UnplanedAro_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Poranění během anestezie" />
+                <Label Content="{Binding Compl_HurtDuringA_SUM}" Style="{StaticResource LabelValueStyle}" />
+                <Label Content="Obtížné OTI" />
+                <Label Content="{Binding Compl_Oti_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Neplánovaná OTI" />
+                <Label Content="{Binding Compl_UnplanedOti_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Neúspěšná OTI" />
+                <Label Content="{Binding Compl_FailedOti_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Selhání RA" />
+                <Label Content="{Binding Compl_FailedRa_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Punkce dury CCF" />
+                <Label Content="{Binding Compl_Ccf_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Mors In Tabula" />
+                <Label Content="{Binding Compl_MorsInTabula_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                <Label Content="Selhání stroje" />
+                <Label Content="{Binding Compl_FailedMachine_SUM}" Style="{StaticResource LabelValueStyle}"/>
+            </ctrl:TwoColumnGrid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Výkony" MinWidth="200" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}">
+            <StackPanel Orientation="Horizontal">
+                <ctrl:TwoColumnGrid Margin="0 0 10 0">
+                    <Label Content="CA+OTI" />
+                    <Label Content="{Binding Perf_CaOti_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="CA+RA" />
+                    <Label Content="{Binding Perf_CaRa_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="CA+LM" />
+                    <Label Content="{Binding Perf_CaLm_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="CLEA" />
+                    <Label Content="{Binding Perf_Clea_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="TAC" />
+                    <Label Content="{Binding Perf_Tac_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="SAA" />
+                    <Label Content="{Binding Perf_Saa_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="C2-3" />
+                    <Label Content="{Binding Perf_C23_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="INF" />
+                    <Label Content="{Binding Perf_Inf_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="AXI" />
+                    <Label Content="{Binding Perf_Axi_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="FOOT" />
+                    <Label Content="{Binding Perf_Foot_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="ANALGO" />
+                    <Label Content="{Binding Perf_Analgo_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="ISCH" />
+                    <Label Content="{Binding Perf_Isch_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="SCALE BL." />
+                    <Label Content="{Binding Perf_ScalBlock_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="POPLIT BL." />
+                    <Label Content="{Binding Perf_PoplitBlock_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                </ctrl:TwoColumnGrid>
+                <ctrl:TwoColumnGrid>
+                    <Label Content="Odesláno na ARO" />
+                    <Label Content="{Binding Perf_SendToAro_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="Nad 2 hodiny" />
+                    <Label Content="{Binding Perf_MoreThan2Hours_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="UPS" />
+                    <Label Content="{Binding Perf_DuringUps_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="UPS nad 65let" />
+                    <Label Content="{Binding Perf_DuringUps_Over65Years_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="ANES dohled" />
+                    <Label Content="{Binding Perf_Control_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="Bilum. rourky - cévní" />
+                    <Label Content="{Binding Perf_BilumRourky_Cevni_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="Bilum. rourky - hyperdróza" />
+                    <Label Content="{Binding Perf_BilumRourky_Hyperhydroza_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="65 + > 2hod" />
+                    <Label Content="{Binding Perf_Over65Years_MoreThan2Hours_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="65+ RA" />
+                    <Label Content="{Binding Perf_Over65Years_Ra_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="65+ CA" />
+                    <Label Content="{Binding Perf_Over65Years_Ca_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="0-19let > 2hod" />
+                    <Label Content="{Binding Perf_UpTo19Years_MoreThan2Hours_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                    <Label Content="0-19let RA" />
+                    <Label Content="{Binding Perf_UpTo19Years_Ra_SUM}" Style="{StaticResource LabelValueStyle}"/>
+                </ctrl:TwoColumnGrid>
+            </StackPanel>
+        </GroupBox>
+        <WrapPanel Grid.Column="2"  Orientation="Horizontal">
+            <GroupBox Header="Celkem anestezií" Height="Auto" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}">
+                <!--<charts:Gauge  From="0" To="{Binding TotalItemsCount}" Value="{Binding TotalItemsCount}" HighFontSize="30" Uses360Mode="True" Width="150" Height="150"/>-->
+                <StackPanel>
+                    <Label Content="{Binding TotalItemsCount}" FontSize="39" HorizontalAlignment="Center"/>
+                    <GroupBox x:Name="adultBox" Header="Dospělí 65+ let" Height="Auto">
+                        <charts:Gauge  From="0" To="{Binding TotalItemsCount}" Value="{Binding Perf_Over65Years_SUM}" HighFontSize="30" Uses360Mode="False" Width="150" Height="150"/>
+                    </GroupBox>
+                    <GroupBox Header="Děti 0-19let" Height="Auto">
+                        <charts:Gauge  From="0" To="{Binding TotalItemsCount}" Value="{Binding Perf_UpTo19Years_SUM}" HighFontSize="30" Uses360Mode="False" Width="150" Height="150"/>
+                    </GroupBox>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Reg. anestezie celkem" VerticalAlignment="Top" 
+                      HeaderTemplate="{StaticResource GroupBoxHeaderStyle}">
+                <Label Content="{Binding Summary_RA_Anes}" FontSize="39" HorizontalAlignment="Center" />
+                <!--<charts:Gauge  From="0" To="{Binding Summary_RA_Anes}" Value="{Binding Summary_RA_Anes}" HighFontSize="30" Uses360Mode="True" Width="150" Height="150"/>-->
+            </GroupBox>
+
+        </WrapPanel>
+    </Grid>
+</UserControl>
