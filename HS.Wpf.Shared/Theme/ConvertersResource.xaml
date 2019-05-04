@@ -7,7 +7,6 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              mc:Ignorable="d">
     <converters:BoolToStringConverter x:Key="BoolToStringConverter" />
-    <converters:AsaXToStringConverter x:Key="AsaXToStringConverter" />
     <dxmvvm:BooleanNegationConverter x:Key="BooleanNegationConverter" />
     <dxmvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 </ResourceDictionary>

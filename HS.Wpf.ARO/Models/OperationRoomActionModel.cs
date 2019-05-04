@@ -11,6 +11,7 @@ namespace HS.Wpf.ARO.Models
     public class OperationRoomActionModel : IEditableObject
     {
         private OperationRoomActionModel modelState;
+        private OperationRoomActionModel previous;
         private bool _isNew;
 
         #region model properties
@@ -31,19 +32,19 @@ namespace HS.Wpf.ARO.Models
         /// <summary>
         /// Rizika - RA
         /// </summary>
-        public virtual int Risks_RA { get; set; }
+        public virtual bool Risks_RA { get; set; }
         /// <summary>
         /// Rizika - pohotovost
         /// </summary>
-        public virtual int Risks_Ups { get; set; }
+        public virtual bool Risks_Ups { get; set; }
         /// <summary>
         /// Rizika - kombinovaná anestezie
         /// </summary>
-        public virtual int Risks_CombA { get; set; }
+        public virtual bool Risks_CombA { get; set; }
         /// <summary>
         /// Rizika - nad 65 let
         /// </summary>
-        public virtual int Risks_Over65Years { get; set; }
+        public virtual bool Risks_Over65Years { get; set; }
 
         /// <summary>
         /// Statistika výkony - 1. celková anestezie z GA + OTI (intubace)
@@ -202,6 +203,8 @@ namespace HS.Wpf.ARO.Models
 
         public virtual bool IsDirty { get; set; }
 
+        public virtual bool IsInMiddleAge { get; set; }
+
         public OperationRoomActionModel()
         {
         }
@@ -215,28 +218,25 @@ namespace HS.Wpf.ARO.Models
                 IssueDate = DateTime.Now.Date;
             }
         }
-            
-        protected void OnBirthdayChanged()
-        {
-            CalculateYearsOld();
-        }
 
-        protected void OnIssueDateChanged()
-        {
-            CalculateYearsOld();
-        }
-
-        public void CalculateYearsOld()
+        private void CalculateYearsOld()
         {
             var years = IssueDate.Year - Birthday.Year;
             Perf_Over65Years = years >= 65;
             Perf_UpTo19Years = years <= 19;
+            IsInMiddleAge = !Perf_Over65Years && !Perf_UpTo19Years;
         }
 
         public void SaveModelState()
         {
-            var json = JsonConvert.SerializeObject(this);
-            modelState = JsonConvert.DeserializeObject<OperationRoomActionModel>(json);
+            modelState = Clone(this);
+            previous = Clone(modelState);
+        }
+
+        private OperationRoomActionModel Clone(OperationRoomActionModel model)
+        {
+            var json = JsonConvert.SerializeObject(model);
+            return JsonConvert.DeserializeObject<OperationRoomActionModel>(json);
         }
 
         public void BeginEdit()
@@ -245,6 +245,8 @@ namespace HS.Wpf.ARO.Models
 
         public void EndEdit()
         {
+            CalcuteDependencyProps();
+
             if (_isNew) return;
 
             if (IsSame(modelState, this))
@@ -255,6 +257,42 @@ namespace HS.Wpf.ARO.Models
             {
                 IsDirty = true;
             }
+        }
+
+        public void CalcuteDependencyProps()
+        {
+            CalculateYearsOld();
+
+            //UPS
+            Perf_DuringUps_Over65Years = Perf_Over65Years && IsUPS();
+            Risks_Ups = IsUPS();
+            //nad 2 hodiny
+            Perf_Over65Years_MoreThan2Hours = Perf_Over65Years && Perf_MoreThan2Hours;
+            Perf_UpTo19Years_MoreThan2Hours = Perf_UpTo19Years && Perf_MoreThan2Hours;
+            //CA
+            Perf_Over65Years_Ca = Perf_Over65Years && IsCA();
+            Risks_CombA = IsCA();
+            //RA
+            Perf_Over65Years_Ra = Perf_Over65Years && IsRA();
+            Perf_UpTo19Years_Ra = Perf_UpTo19Years && IsRA();
+            Risks_RA = IsRA();
+
+            Risks_Over65Years = Perf_Over65Years;
+        }
+
+        private bool IsUPS()
+        {
+            return Perf_DuringUps;
+        }
+
+        private bool IsCA()
+        {
+            return Perf_CaRa;
+        }
+
+        private bool IsRA()
+        {
+            return Perf_Clea || Perf_Tac || Perf_Saa || Perf_C23 || Perf_Inf || Perf_Axi || Perf_Foot || Perf_PoplitBlock || Perf_Isch || Perf_ScalBlock;
         }
 
         public void CancelEdit()

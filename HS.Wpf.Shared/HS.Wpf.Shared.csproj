@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Controls\BooleanDataGridComboBoxColumn.cs" />
     <Compile Include="Controls\TwoColumnGrid.cs" />
-    <Compile Include="Converters\AsaXToStringConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="DesingTime\BooleanComboBoxItemDesingTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
-﻿using HS.Wpf.ARO.Models;
+﻿using DevExpress.Mvvm.POCO;
+using HS.Wpf.ARO.Models;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -14,7 +15,7 @@ namespace HS.Wpf.ARO.ViewModels
     public class OperationRoomStatsViewModel
     {
         private IList<OperationRoomActionModel> _models;
-        public virtual SeriesCollection PatientsCollection { get; set; }
+        public virtual ObservableCollection<OperationRoomRiskStatsViewModel> RisksCollection { get; set; }
 
         #region properties
         /// <summary>
@@ -215,10 +216,23 @@ namespace HS.Wpf.ARO.ViewModels
             TotalItemsCount = _models.Count;
             Summary_Anes = TotalItemsCount; //stejný počewt jako položek
 
-            LoadPieSeries();
             LoadPerf();
             LoadCompl();
             Load_Summary_RA_Anes();
+            LoadRisks();
+        }
+
+        private void LoadRisks()
+        {
+            RisksCollection = new ObservableCollection<OperationRoomRiskStatsViewModel>();
+            OperationRoomRiskStatsViewModel vm;
+            for (int i = 1; i <= 5; i++)
+            {
+                vm = ViewModelSource.Create(() => new OperationRoomRiskStatsViewModel());
+                vm.Load(_models, i);
+
+                RisksCollection.Add(vm);
+            }
         }
 
         private void Load_Summary_RA_Anes()
@@ -241,7 +255,7 @@ namespace HS.Wpf.ARO.ViewModels
 
         private void LoadPerf()
         {
-            Perf_Analgo_SUM = _models.Count(s=>s.Perf_Analgo);
+            Perf_Analgo_SUM = _models.Count(s => s.Perf_Analgo);
             Perf_Axi_SUM = _models.Count(s => s.Perf_Axi);
             Perf_BilumRourky_Cevni_SUM = _models.Count(s => s.Perf_BilumRourky_Cevni);
             Perf_BilumRourky_Hyperhydroza_SUM = _models.Count(s => s.Perf_BilumRourky_Hyperhydroza);
@@ -271,29 +285,5 @@ namespace HS.Wpf.ARO.ViewModels
             Perf_UpTo19Years_Ra_SUM = _models.Count(s => s.Perf_UpTo19Years_Ra);
             Perf_UpTo19Years_SUM = _models.Count(s => s.Perf_UpTo19Years);
         }
-
-        private void LoadPieSeries()
-        {
-            PatientsCollection = new SeriesCollection();
-
-            PieSeries ps = new PieSeries();
-            ps.Title = "65+ let";
-            ps.Values = new ChartValues<ObservableValue> { new ObservableValue(_models.Where(p => p.Perf_Over65Years).Count()) };
-            ps.DataLabels = false;
-            PatientsCollection.Add(ps);
-
-            ps = new PieSeries();
-            ps.Title = "0-19let";
-            ps.Values = new ChartValues<ObservableValue> { new ObservableValue(_models.Where(p => p.Perf_UpTo19Years).Count()) };
-            ps.DataLabels = false;
-            PatientsCollection.Add(ps);
-
-            ps = new PieSeries();
-            ps.Title = "Ostatní";
-            ps.Values = new ChartValues<ObservableValue> { new ObservableValue(_models.Where(p => !p.Perf_UpTo19Years && !p.Perf_UpTo19Years).Count()) };
-            ps.DataLabels = false;
-            PatientsCollection.Add(ps);
-        }
-
     }
 }

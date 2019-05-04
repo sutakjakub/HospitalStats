@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="HS.Wpf.ARO.Views.OperationRoomViews.RiskStatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
+             xmlns:charts="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:ctrl="clr-namespace:HS.Wpf.Shared.Controls;assembly=HS.Wpf.Shared"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="180">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HS.Wpf.ARO;component/Views/OperationRoomViews/StatsOrViewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <GroupBox Header="{Binding Title}" Height="Auto" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}">
+            <StackPanel>
+                <GroupBox x:Name="adultBox" Header="Celkem" Height="Auto">
+                    <charts:Gauge  From="0" To="{Binding TotalItemsCount}" Value="{Binding Risks_Risks_SUM}" HighFontSize="30" Uses360Mode="False" Width="150" Height="150"/>
+                </GroupBox>
+                <ctrl:TwoColumnGrid>
+                    <Label Content="RA" />
+                    <Label Content="{Binding Risks_RA_SUM}" Style="{StaticResource LabelValueStyle}" HorizontalAlignment="Right"/>
+
+                    <Label Content="UPS" />
+                    <Label Content="{Binding Risks_Ups_SUM}" Style="{StaticResource LabelValueStyle}" HorizontalAlignment="Right"/>
+
+                    <Label Content="Komb." />
+                    <Label Content="{Binding Risks_CombA_SUM}" Style="{StaticResource LabelValueStyle}" HorizontalAlignment="Right"/>
+
+                    <Label Content="65+ let" />
+                    <Label Content="{Binding Risks_Over65Years_SUM}" Style="{StaticResource LabelValueStyle}" HorizontalAlignment="Right"/>
+                </ctrl:TwoColumnGrid>
+
+            </StackPanel>
+            <!--<StackPanel>
+                <GroupBox x:Name="adultBox" Header="Celkem" Height="Auto">
+                    <charts:Gauge  From="0" To="{Binding TotalItemsCount}" Value="{Binding Risks_Risks_SUM}" HighFontSize="30" Uses360Mode="False" Width="150" Height="150"/>
+                </GroupBox>
+                
+                <GroupBox Header="RA celkem" VerticalAlignment="Top">
+                    <Label Content="{Binding Risks_RA_SUM}" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource LabelValueStyle}" />
+                </GroupBox>
+
+                <GroupBox Header="UPS celkem" VerticalAlignment="Top">
+                    <Label Content="{Binding Risks_Ups_SUM}" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource LabelValueStyle}"/>
+                </GroupBox>
+
+                <GroupBox Header="Kombinovaná celkem" VerticalAlignment="Top">
+                    <Label Content="{Binding Risks_CombA_SUM}" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource LabelValueStyle}"/>
+                </GroupBox>
+
+                <GroupBox Header="Kombinovaná celkem" VerticalAlignment="Top">
+                    <Label Content="{Binding Risks_Ups_SUM}" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource LabelValueStyle}"/>
+                </GroupBox>
+
+                <GroupBox Header="Nad 65+ let celkem" VerticalAlignment="Top">
+                    <Label Content="{Binding Risks_Over65Years_SUM}" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource LabelValueStyle}"/>
+                </GroupBox>
+            </StackPanel>-->
+
+        </GroupBox>
+    </Grid>
+</UserControl>

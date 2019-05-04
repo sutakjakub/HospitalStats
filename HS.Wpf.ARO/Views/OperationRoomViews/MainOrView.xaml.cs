@@ -24,5 +24,27 @@ namespace HS.Wpf.ARO.Views.OperationRoomViews
         {
             InitializeComponent();
         }
+
+        private void DataToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            dataRow.Height = new GridLength(1, GridUnitType.Star);
+            splitterRow.Height = new GridLength(5);
+        }
+
+        private void DataToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            dataRow.Height = new GridLength(0);
+            splitterRow.Height = new GridLength(0);
+        }
+
+        private void StatsToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            statsRow.Height = new GridLength(1, GridUnitType.Star);
+        }
+
+        private void StatsToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            statsRow.Height = new GridLength(0);
+        }
     }
 }

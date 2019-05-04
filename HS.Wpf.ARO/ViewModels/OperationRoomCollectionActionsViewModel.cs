@@ -29,6 +29,7 @@ namespace HS.Wpf.ARO.ViewModels
         {
             var vm = ViewModelSource.Create(() => new OperationRoomActionViewModel());
             vm.Model = ViewModelSource.Create(() => new OperationRoomActionModel(true));
+            vm.YearBirthday = DateTime.Now.Year;
             vm.Model.SaveModelState();
 
             Actions.Insert(0, vm);

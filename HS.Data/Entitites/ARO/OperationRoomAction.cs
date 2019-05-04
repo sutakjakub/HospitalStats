@@ -21,19 +21,19 @@ namespace HS.Data.Entitites.ARO
         /// <summary>
         /// Rizika - RA
         /// </summary>
-        public int Risks_RA { get; set; }
+        public bool Risks_RA { get; set; }
         /// <summary>
         /// Rizika - pohotovost
         /// </summary>
-        public int Risks_Ups { get; set; }
+        public bool Risks_Ups { get; set; }
         /// <summary>
         /// Rizika - kombinovaná anestezie
         /// </summary>
-        public int Risks_CombA { get; set; }
+        public bool Risks_CombA { get; set; }
         /// <summary>
         /// Rizika - nad 65 let
         /// </summary>
-        public int Risks_Over65Years { get; set; }
+        public bool Risks_Over65Years { get; set; }
 
 
         /// <summary>

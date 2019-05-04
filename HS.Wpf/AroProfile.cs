@@ -21,7 +21,7 @@ namespace HS.Wpf
                 .ForMember(x => x.IsDirty, opt => opt.Ignore())
                 .AfterMap((src, dest) =>
                 {
-                    dest.CalculateYearsOld();
+                    dest.CalcuteDependencyProps();
                     dest.SaveModelState();
                 });
 

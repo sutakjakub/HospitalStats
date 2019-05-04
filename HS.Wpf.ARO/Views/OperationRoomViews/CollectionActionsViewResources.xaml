@@ -12,12 +12,16 @@
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="VerticalGridLinesBrush" Value="black"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="black"/>
+        <Setter Property="SelectionUnit" Value="Cell" />
     </Style>
 
     <Style x:Key="DefaultDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="BorderThickness" Value="0.5"/>
         <Setter Property="BorderBrush" Value="Black" />
-        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Padding" Value="5 0"/>
     </Style>
 
@@ -39,26 +43,31 @@
 
     <Style x:Key="DefaultDataGridCellStyle" TargetType="{x:Type DataGridCell}">
         <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="Padding" Value="5 0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    </Grid>
+                    <Border
+                        BorderBrush="{TemplateBinding BorderBrush}"  
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Foreground" Value="Black" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="Black"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="InfoDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
         <Setter Property="Background" Value="#ccd9ff"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontWeight" Value="Light"/>
     </Style>
     <Style x:Key="InfoNotEditableDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource InfoDataGridCellStyle}">
         <Setter Property="Background" Value="Silver"/>
@@ -66,30 +75,19 @@
 
     <Style x:Key="RisksDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
         <Setter Property="Background" Value="#ffd9b3"/>
-    </Style>
-    <Style x:Key="RisksUnder65DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RisksDataGridCellStyle}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.Perf_Over65Years}" Value="False">
+            <Trigger Property="IsReadOnly" Value="True">
                 <Setter Property="Background" Value="Silver"/>
-            </DataTrigger>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="PerfDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DefaultDataGridCellStyle}">
         <Setter Property="Background" Value="#b3ffcc"/>
-    </Style>
-    <Style x:Key="PerfUnder65DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PerfDataGridCellStyle}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.Perf_Over65Years}" Value="False">
+            <Trigger Property="IsReadOnly" Value="True">
                 <Setter Property="Background" Value="Silver"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="PerfUnder19DataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PerfDataGridCellStyle}">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Model.Perf_UpTo19Years}" Value="False">
-                <Setter Property="Background" Value="Silver"/>
-            </DataTrigger>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -109,13 +107,11 @@
     </Style>
 
     <Style TargetType="{x:Type DataGridRow}">
-        <Setter Property="Height" Value="40" />
+        <Setter Property="Height" Value="35" />
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="Black" />
-                <Setter Property="BorderThickness" Value="0 2" />
+                <Setter Property="FontWeight" Value="Medium"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-    
 </ResourceDictionary>

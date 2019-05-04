@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:sw="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1200"
              x:Name="LayoutRoot">
@@ -16,63 +18,95 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding LoadDataCommand}" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}" />
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding AddCommand}" />
+    </UserControl.InputBindings>
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadedCommand}" />
     </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" MinHeight="50"/>
-            <RowDefinition Height="5" />
-            <RowDefinition Height="Auto" MinHeight="200"/>
+            <RowDefinition Height="*" x:Name="dataRow"/>
+            <RowDefinition Height="5" x:Name="splitterRow"/>
+            <RowDefinition Height="0" x:Name="statsRow"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="0 10 0 5">
-            <Button fa:Awesome.Content="Plus" 
+        <GroupBox>
+            <Grid Margin="0 10 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 40 0"
+                            Visibility="{Binding ElementName=dataToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button fa:Awesome.Content="Plus" 
+                            ToolTip="Nová položka (CTRL + N)"
                     Foreground="Green" 
                     TextElement.FontSize="32" 
                     Width="32"
                     Height="32"
                     Style="{StaticResource TransparentButton}"
                     Command="{Binding AddCommand}" />
-            <Button fa:Awesome.Content="Save" 
-                    Foreground="Blue" 
-                    TextElement.FontSize="32" 
-                    Width="32"
-                    Height="32"
-                    Style="{StaticResource TransparentButton}"
-                    Command="{Binding SaveCommand}"/>
+                    <Button fa:Awesome.Content="Save" 
+                            ToolTip="Uložit (CTRL + S)"
+                        Foreground="Blue" 
+                        TextElement.FontSize="32" 
+                        Width="32"
+                        Height="32"
+                        Style="{StaticResource TransparentButton}"
+                        Command="{Binding SaveCommand}" />
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
-                    <Label Content="Datum od:" Style="{StaticResource FilterLabel}" VerticalAlignment="Center"/>
-                    <DatePicker SelectedDate="{Binding FromDate}"
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Datum od:" Style="{StaticResource FilterLabel}" VerticalAlignment="Center"/>
+                        <DatePicker SelectedDate="{Binding FromDate}"
                             Style="{StaticResource FilterDatePicker}"
                             VerticalContentAlignment="Center"
                             CalendarStyle="{StaticResource CalendarDatePicker}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Datum do:" Style="{StaticResource FilterLabel}" VerticalAlignment="Center"/>
-                    <DatePicker SelectedDate="{Binding ToDate}"
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Datum do:" Style="{StaticResource FilterLabel}" VerticalAlignment="Center"/>
+                        <DatePicker SelectedDate="{Binding ToDate}"
                             VerticalContentAlignment="Center"
                             Style="{StaticResource FilterDatePicker}"
                             CalendarStyle="{StaticResource CalendarDatePicker}"/>
-                </StackPanel>
-                <Button fa:Awesome.Content="Search" 
+                    </StackPanel>
+                    <Button fa:Awesome.Content="Search" 
+                            ToolTip="Načíst data (F5)"
                     Style="{StaticResource TransparentButton}"
                     Command="{Binding LoadDataCommand}"
                     TextElement.FontSize="32" 
                     Width="32"
                     Height="32"
                     Margin="10 0 0 0"/>
-            </StackPanel>
-        </StackPanel>
+                </StackPanel>
 
-        <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" />
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <sw:HorizontalToggleSwitch x:Name="dataToggle" IsChecked="True" CheckedContent="Data" UncheckedContent="Data" Margin="0 0 20 0" Checked="DataToggle_Checked" Unchecked="DataToggle_Unchecked"/>
+                    <sw:HorizontalToggleSwitch x:Name="statsToggle" IsChecked="False" CheckedContent="Stats" UncheckedContent="Stats" Checked="StatsToggle_Checked" Unchecked="StatsToggle_Unchecked"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
 
-        <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" />
-        
-        <ScrollViewer Grid.Row="3" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top">
+        <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" 
+                                     Visibility="{Binding ElementName=dataToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" 
+                      Visibility="{Binding ElementName=statsToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <ScrollViewer Grid.Row="3" CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                      VerticalContentAlignment="Top"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch"
+                      Visibility="{Binding ElementName=statsToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:StatsOrView x:Name="statsView" DataContext="{Binding Stats}" />
         </ScrollViewer>
     </Grid>

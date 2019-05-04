@@ -6,15 +6,12 @@
         xmlns:local="clr-namespace:HS.Wpf"
         xmlns:aro="clr-namespace:HS.Wpf.ARO.Views;assembly=HS.Wpf.ARO"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+            <MenuItem Header="Aplikace">
+                <MenuItem Header="Zálohovat databázi" Command="{Binding BackupDatabaseCommand}"/>
             </MenuItem>
         </Menu>
         <aro:MainView DataContext="{Binding DataContextConcrete}" Margin="10" />
