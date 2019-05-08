@@ -221,6 +221,7 @@ namespace HS.Wpf.ARO.Models
 
         private void CalculateYearsOld()
         {
+            //todo:
             var years = IssueDate.Year - Birthday.Year;
             Perf_Over65Years = years >= 65;
             Perf_UpTo19Years = years <= 19;

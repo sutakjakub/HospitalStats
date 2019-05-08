@@ -37,7 +37,7 @@ namespace HS.Wpf
 
             using (var ctx = new HsDbContext())
             {
-                ctx.Database.Initialize(true);
+                //ctx.Database.Initialize(true);
             }
 
             IMapper mapper = new MapperConfiguration(cfg =>

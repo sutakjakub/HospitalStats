@@ -23,7 +23,7 @@ namespace HS.Data
                 var gen = new RandomGenerator();
                 var faker = new Bogus.Faker();
 
-                var list = Builder<OperationRoomAction>.CreateListOfSize(100).All()
+                var list = Builder<OperationRoomAction>.CreateListOfSize(250).All()
                     .With(p => p.Id = 0)
                     .With(p => p.IsDeleted = false)
                     .With(p => p.Risks_Over65Years = gen.Boolean())
@@ -69,7 +69,7 @@ namespace HS.Data
                     .With(p => p.Compl_Oti = gen.Boolean())
                     .With(p => p.Compl_UnplanedAro = gen.Boolean())
                     .With(p => p.Compl_UnplanedOti = gen.Boolean())
-                    .With(p => p.IssueDate = faker.Date.Between(new DateTime(2019, 5, 1), DateTime.Now.Date))
+                    .With(p => p.IssueDate = faker.Date.Between(new DateTime(2019, 4, 1), new DateTime(2019, 4, 30)))
                     .With(p => p.Modified = DateTime.Now)
                     .With(p => p.Birthday = new DateTime(gen.Next(1920, 2019), 1, 1))
                     .Build();

@@ -58,7 +58,7 @@
                                     Binding="{Binding Model.Description}"
                                     CellStyle="{StaticResource InfoDataGridCellStyle}" HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Ročník" MinWidth="50" x:Name="Column3" 
-                                        Binding="{Binding YearBirthday}"
+                                        Binding="{Binding Model.Birthday, StringFormat=d}"
                                         CellStyle="{StaticResource InfoDataGridCellStyle}" HeaderStyle="{StaticResource InfoDataGridColumnHeaderStyle}"/>
                 <ctrl:BooleanDataGridComboBoxColumn Header="0-19 let" MinWidth="50" x:Name="Column35" 
                                                     SelectedValueBinding="{Binding Model.Perf_UpTo19Years}"
@@ -103,7 +103,7 @@
                 <ctrl:BooleanDataGridComboBoxColumn Header="CLEA" MinWidth="50" x:Name="Column12" CellStyle="{StaticResource PerfDataGridCellStyle}"
                                                     SelectedValueBinding="{Binding Model.Perf_Clea}"
                                                     HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
-                <ctrl:BooleanDataGridComboBoxColumn Header="TAC" MinWidth="50" x:Name="Column13" CellStyle="{StaticResource PerfDataGridCellStyle}"
+                <ctrl:BooleanDataGridComboBoxColumn Header="TEAC" MinWidth="50" x:Name="Column13" CellStyle="{StaticResource PerfDataGridCellStyle}"
                                                     SelectedValueBinding="{Binding Model.Perf_Tac}"
                                                     HeaderStyle="{StaticResource PerfDataGridColumnHeaderStyle}"/>
                 <ctrl:BooleanDataGridComboBoxColumn Header="SAA" MinWidth="50" x:Name="Column14" CellStyle="{StaticResource PerfDataGridCellStyle}"

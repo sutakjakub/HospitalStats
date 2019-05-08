@@ -46,20 +46,31 @@
                             Visibility="{Binding ElementName=dataToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Button fa:Awesome.Content="Plus" 
                             ToolTip="Nová položka (CTRL + N)"
-                    Foreground="Green" 
-                    TextElement.FontSize="32" 
-                    Width="32"
-                    Height="32"
-                    Style="{StaticResource TransparentButton}"
-                    Command="{Binding AddCommand}" />
+                            Foreground="Green" 
+                            TextElement.FontSize="32" 
+                            Width="32"
+                            Height="32"
+                            Margin="15 0 0 0"
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding AddCommand}" />
                     <Button fa:Awesome.Content="Save" 
                             ToolTip="Uložit (CTRL + S)"
-                        Foreground="Blue" 
-                        TextElement.FontSize="32" 
-                        Width="32"
-                        Height="32"
-                        Style="{StaticResource TransparentButton}"
-                        Command="{Binding SaveCommand}" />
+                            Foreground="Blue" 
+                            TextElement.FontSize="32" 
+                            Width="32"
+                            Height="32"
+                            Margin="15 0 0 0"
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding SaveCommand}" />
+                    <Button fa:Awesome.Content="FileExcelOutline" 
+                            ToolTip="Exportovat do excelu"
+                            Foreground="Green" 
+                            TextElement.FontSize="32" 
+                            Width="32"
+                            Height="32"
+                            Margin="25 0 0 0"
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding ExportToExcelCommand}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -68,19 +79,28 @@
                         <DatePicker SelectedDate="{Binding FromDate}"
                             Style="{StaticResource FilterDatePicker}"
                             VerticalContentAlignment="Center"
-                            CalendarStyle="{StaticResource CalendarDatePicker}"/>
+                            CalendarStyle="{StaticResource CalendarDatePicker}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxmvvm:KeyToCommand KeyGesture="Enter" Command="{Binding LoadDataCommand}" />
+                            </dxmvvm:Interaction.Behaviors>
+                        </DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Datum do:" Style="{StaticResource FilterLabel}" VerticalAlignment="Center"/>
                         <DatePicker SelectedDate="{Binding ToDate}"
                             VerticalContentAlignment="Center"
                             Style="{StaticResource FilterDatePicker}"
-                            CalendarStyle="{StaticResource CalendarDatePicker}"/>
+                            CalendarStyle="{StaticResource CalendarDatePicker}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxmvvm:KeyToCommand KeyGesture="Enter" Command="{Binding LoadDataCommand}" />
+                            </dxmvvm:Interaction.Behaviors>
+                        </DatePicker>
                     </StackPanel>
                     <Button fa:Awesome.Content="Search" 
                             ToolTip="Načíst data (F5)"
                     Style="{StaticResource TransparentButton}"
                     Command="{Binding LoadDataCommand}"
+                    CommandParameter="True"
                     TextElement.FontSize="32" 
                     Width="32"
                     Height="32"

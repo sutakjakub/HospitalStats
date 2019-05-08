@@ -40,20 +40,7 @@
             </GroupBox>
         </StackPanel>
 
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding RisksCollection}" VerticalAlignment="Top">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <local:RiskStatsView />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <GroupBox Grid.Column="2" Header="Výkony" MinWidth="200" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}" VerticalAlignment="Top">
+        <GroupBox Grid.Column="1" Header="Výkony" MinWidth="200" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal">
                 <ctrl:TwoColumnGrid Margin="0 0 25 0">
                     <Label Content="CA+OTI" />
@@ -64,7 +51,7 @@
                     <Label Content="{Binding Perf_CaLm_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="CLEA" />
                     <Label Content="{Binding Perf_Clea_SUM}" Style="{StaticResource LabelValueStyle}"/>
-                    <Label Content="TAC" />
+                    <Label Content="TEAC" />
                     <Label Content="{Binding Perf_Tac_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="SAA" />
                     <Label Content="{Binding Perf_Saa_SUM}" Style="{StaticResource LabelValueStyle}"/>
@@ -96,13 +83,13 @@
                     <Label Content="{Binding Perf_Control_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="Bilum. rourky - cévní" />
                     <Label Content="{Binding Perf_BilumRourky_Cevni_SUM}" Style="{StaticResource LabelValueStyle}"/>
-                    <Label Content="Bilum. rourky - hyperdróza" />
+                    <Label Content="Bilum. rourky - hyperhydróza" />
                     <Label Content="{Binding Perf_BilumRourky_Hyperhydroza_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="65 + > 2hod" />
                     <Label Content="{Binding Perf_Over65Years_MoreThan2Hours_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="65+ RA" />
                     <Label Content="{Binding Perf_Over65Years_Ra_SUM}" Style="{StaticResource LabelValueStyle}"/>
-                    <Label Content="65+ CA" />
+                    <Label Content="65+ CA+RA" />
                     <Label Content="{Binding Perf_Over65Years_Ca_SUM}" Style="{StaticResource LabelValueStyle}"/>
                     <Label Content="0-19let > 2hod" />
                     <Label Content="{Binding Perf_UpTo19Years_MoreThan2Hours_SUM}" Style="{StaticResource LabelValueStyle}"/>
@@ -113,6 +100,19 @@
                 </ctrl:TwoColumnGrid>
             </StackPanel>
         </GroupBox>
+
+        <ItemsControl Grid.Column="2" ItemsSource="{Binding RisksCollection}" VerticalAlignment="Top">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:RiskStatsView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <GroupBox Grid.Column="3" Header="Komplikace" MinWidth="200" HeaderTemplate="{StaticResource GroupBoxHeaderStyle}" VerticalAlignment="Top">
             <ctrl:TwoColumnGrid>

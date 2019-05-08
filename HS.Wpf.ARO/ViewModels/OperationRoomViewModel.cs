@@ -20,6 +20,10 @@ using ToastNotifications;
 using ToastNotifications.Position;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using System.Data;
+using Microsoft.Win32;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace HS.Wpf.ARO.ViewModels
 {
@@ -91,7 +95,7 @@ namespace HS.Wpf.ARO.ViewModels
                 _uow.Save();
 
                 _notifier.ShowSuccess("Data uložena.");
-                LoadData();
+                LoadData(false);
             }
             catch (Exception ex)
             {
@@ -118,7 +122,7 @@ namespace HS.Wpf.ARO.ViewModels
                         _uow.Save();
 
                         _notifier.ShowSuccess("Data smazána.");
-                        LoadData();
+                        LoadData(false);
                     }
                     else
                     {
@@ -139,11 +143,11 @@ namespace HS.Wpf.ARO.ViewModels
 
         }
 
-        public void LoadData()
+        public void LoadData(bool checkNotSavedData = true)
         {
             try
             {
-                if (CollectionActions != null && CollectionActions.Actions != null && CollectionActions.Actions.Any(s => s.Model.IsDirty))
+                if (checkNotSavedData && CollectionActions != null && CollectionActions.Actions != null && CollectionActions.Actions.Any(s => s.Model.IsDirty))
                 {
                     var result = MessageBox.Show("Nemáte uložená data. Chcete pokračovat", "Nemáte uložená data", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.No) return;
@@ -167,13 +171,74 @@ namespace HS.Wpf.ARO.ViewModels
             }
         }
 
+        public void ExportToExcel()
+        {
+            var collectionId = CollectionActions.Actions.Where(p => p.Model.Id > 0).Select(s => s.Model.Id);
+            var list = _uow.OperationRoomRepository.Entities.Where(p => collectionId.Contains(p.Id)).ToList();
+
+            var datatable = list.ToDataTable();
+
+            SaveFileDialog dlg = new SaveFileDialog();
+
+            dlg.FileName = $"data_{DateTime.Now.Date.ToString("yyyy_MM_dd")}_{Guid.NewGuid()}.xlsx"; // Default file name
+            dlg.DefaultExt = ".xlsx"; // Default file extension
+            dlg.Filter = "Excel (.xlsx)|*.xlsx"; // Filter files by extension
+
+            // Show save file dialog box
+            bool? result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string destination = dlg.FileName;
+
+                using (var workbook = new XLWorkbook())
+                {
+                    try
+                    {
+                        workbook.Worksheets.Add(datatable, "Data");
+                        workbook.SaveAs(destination);
+
+                        _notifier.ShowSuccess($"Export do excelu uložen do {destination}");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Nepovedlo se exportovat do excelu.", MessageBoxButton.OK, MessageBoxImage.Error);
+                        _notifier.ShowSuccess($"Export do excelu se nezdařil uložit do {destination}");
+                    }
+                    
+                }
+            }
+        }
+
         public void Loaded()
         {
             if (!_loaded)
             {
                 _loaded = true;
-                LoadData();
+                LoadData(false);
             }
+        }
+    }
+
+    public static class DataTableExtensions
+    {
+        public static DataTable ToDataTable<T>(this IList<T> data)
+        {
+            PropertyDescriptorCollection properties =
+                TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+            return table;
         }
     }
 }
