@@ -49,11 +49,12 @@ namespace HS.Wpf.ARO.ViewModels
 
             CollectionActions = ViewModelSource.Create(() => new OperationRoomCollectionActionsViewModel());
             Messenger.Default.Register<DeleteOrMessage>(this, Delete);
+            Messenger.Default.Register<ReCalculateSelectedOrActionMessage>(this, ReCalculate);
 
             Stats = ViewModelSource.Create(() => new OperationRoomStatsViewModel());
 
             var now = DateTime.Now.Date;
-            FromDate = new DateTime(now.Year, now.Month, 1);
+            FromDate = new DateTime(now.Year, 1, 1);
             ToDate = now;
 
             _notifier = new Notifier(cfg =>
@@ -70,6 +71,11 @@ namespace HS.Wpf.ARO.ViewModels
 
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
+        }
+
+        private void ReCalculate(object obj)
+        {
+            //SelectedAction.Model.EndEdit();
         }
 
         public void Save()
@@ -89,18 +95,19 @@ namespace HS.Wpf.ARO.ViewModels
                     else
                     {
                         action = _mapper.Map<OperationRoomAction>(model);
+                        CollectionActions.LatestIssueDate = model.IssueDate;
                         _uow.OperationRoomRepository.Add(action);
                     }
                 }
                 _uow.Save();
 
-                _notifier.ShowSuccess("Data uložena.");
+                ShowSuccessWithTime("Data uložena.");
                 LoadData(false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Chyba uložení", MessageBoxButton.OK, MessageBoxImage.Error);
-                _notifier.ShowError("Data se nepocedla uložit.");
+                ShowErrorNotifyWithTime("Data se nepocedla uložit.");
             }
         }
 
@@ -121,7 +128,7 @@ namespace HS.Wpf.ARO.ViewModels
                         _uow.OperationRoomRepository.Remove(msg.Id);
                         _uow.Save();
 
-                        _notifier.ShowSuccess("Data smazána.");
+                        ShowSuccessWithTime("Data smazána.");
                         LoadData(false);
                     }
                     else
@@ -134,7 +141,7 @@ namespace HS.Wpf.ARO.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Chyba smazání", MessageBoxButton.OK, MessageBoxImage.Error);
-                _notifier.ShowError("Smazání položky se nepovedlo.");
+                ShowErrorNotifyWithTime("Smazání položky se nepovedlo.");
             }
         }
 
@@ -162,12 +169,12 @@ namespace HS.Wpf.ARO.ViewModels
                 CollectionActions.LoadData(list);
                 Stats.Load(list.Select(s => s.Model).ToList());
 
-                _notifier.ShowInformation("Data načtena.");
+                ShowInfoNotifyWithTime($"Načteno: {CollectionActions.Actions.Count} anestezií");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Chyba načítání dat", MessageBoxButton.OK, MessageBoxImage.Error);
-                _notifier.ShowError("Data se nepovedla načíst.");
+                ShowErrorNotifyWithTime("Data se nepovedla načíst.");
             }
         }
 
@@ -200,14 +207,14 @@ namespace HS.Wpf.ARO.ViewModels
                         workbook.Worksheets.Add(datatable, "Data");
                         workbook.SaveAs(destination);
 
-                        _notifier.ShowSuccess($"Export do excelu uložen do {destination}");
+                        ShowSuccessWithTime($"Export do excelu uložen do {destination}");
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString(), "Nepovedlo se exportovat do excelu.", MessageBoxButton.OK, MessageBoxImage.Error);
-                        _notifier.ShowSuccess($"Export do excelu se nezdařil uložit do {destination}");
+                        ShowErrorNotifyWithTime($"Export do excelu se nezdařil uložit do {destination}");
                     }
-                    
+
                 }
             }
         }
@@ -219,6 +226,30 @@ namespace HS.Wpf.ARO.ViewModels
                 _loaded = true;
                 LoadData(false);
             }
+        }
+
+        private void ShowErrorNotifyWithTime(string msg)
+        {
+            _notifier.ShowError(CreateNotifyString(msg).ToString());
+        }
+
+        private void ShowInfoNotifyWithTime(string msg)
+        {
+            _notifier.ShowInformation(CreateNotifyString(msg).ToString());
+        }
+
+        private void ShowSuccessWithTime(string msg)
+        {
+            _notifier.ShowSuccess(CreateNotifyString(msg).ToString());
+        }
+
+        private StringBuilder CreateNotifyString(string msg)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(msg);
+            sb.AppendLine($"Čas: {DateTime.Now.ToString("HH:mm:ss")}");
+
+            return sb;
         }
     }
 

@@ -7,7 +7,7 @@
         xmlns:aro="clr-namespace:HS.Wpf.ARO.Views;assembly=HS.Wpf.ARO"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Statistika OP sál" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Aplikace">

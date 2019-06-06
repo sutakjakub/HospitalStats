@@ -18,6 +18,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Markup;
 using System.Text;
+using System.Diagnostics;
 
 namespace HS.Wpf
 {
@@ -35,10 +36,10 @@ namespace HS.Wpf
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            using (var ctx = new HsDbContext())
-            {
-                //ctx.Database.Initialize(true);
-            }
+            //using (var ctx = new HsDbContext())
+            //{
+
+            //}
 
             IMapper mapper = new MapperConfiguration(cfg =>
             {
@@ -51,9 +52,37 @@ namespace HS.Wpf
             AppCore.IoC.RegisterType<AroUnitOfWork>(new PerResolveLifetimeManager());
             AppCore.IoC.RegisterType<ARO.ViewModels.MainViewModel>(new PerResolveLifetimeManager());
 
+            if (false)
+            {
+                var uow = AppCore.IoC.Resolve<AroUnitOfWork>();
+
+                ToConsole(uow.OperationRoomRepository.Entities);
+                bool b;
+                foreach (var item in uow.OperationRoomRepository.Entities.Where(p => p.IssueDate < new DateTime(2019, 03, 21)))
+                {
+                    b = item.Perf_CaRa;
+                    item.Perf_CaRa = item.Perf_CaLm;
+                    item.Perf_CaLm = b;
+
+                    uow.OperationRoomRepository.Update(item);
+                }
+
+                uow.Save();
+
+                ToConsole(uow.OperationRoomRepository.Entities);
+            }
+
             MainWindow = new MainWindow();
             MainWindow.DataContext = ViewModelSource.Create(() => new MainWindowViewModel());
             MainWindow.Show();
+        }
+
+        private void ToConsole(IEnumerable<OperationRoomAction> entities)
+        {
+            foreach (var item in entities)
+            {
+                Trace.WriteLine($"{item.IssueDate} - CaRa:{item.Perf_CaRa} x CaLm:{item.Perf_CaLm}");
+            }
         }
     }
 }

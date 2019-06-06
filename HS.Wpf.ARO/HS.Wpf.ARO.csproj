@@ -112,6 +112,7 @@
     <Compile Include="DesingTime\OperationRoomActionViewModelDesingTime.cs" />
     <Compile Include="DesingTime\OperationRoomCollectionActionsViewModelDesingTime.cs" />
     <Compile Include="Messages\DeleteOrMessage.cs" />
+    <Compile Include="Messages\ReCalculateSelectedOrActionMessage.cs" />
     <Compile Include="Messages\SaveOrMessage.cs" />
     <Compile Include="Models\OperationRoomActionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

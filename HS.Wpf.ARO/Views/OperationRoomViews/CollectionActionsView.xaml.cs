@@ -36,12 +36,9 @@ namespace HS.Wpf.ARO.Views.OperationRoomViews
             InitializeComponent();
         }
 
-        private void dataGridStats_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        private void Datagrid_Selected(object sender, RoutedEventArgs e)
         {
-            //if (e.Row.GetIndex() != 0)
-            //{
-            //    e.Cancel = true;
-            //}
+
         }
     }
 }

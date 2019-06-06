@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HS.Wpf.ARO.Views.OperationRoomViews"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-             
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:sw="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
              mc:Ignorable="d" 
@@ -34,7 +33,7 @@
             <RowDefinition Height="0" x:Name="statsRow"/>
         </Grid.RowDefinitions>
 
-        <GroupBox>
+        <GroupBox Header="Filtry">
             <Grid Margin="0 10 0 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -108,26 +107,32 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <sw:HorizontalToggleSwitch x:Name="dataToggle" IsChecked="True" CheckedContent="Data" UncheckedContent="Data" Margin="0 0 20 0" Checked="DataToggle_Checked" Unchecked="DataToggle_Unchecked"/>
-                    <sw:HorizontalToggleSwitch x:Name="statsToggle" IsChecked="False" CheckedContent="Stats" UncheckedContent="Stats" Checked="StatsToggle_Checked" Unchecked="StatsToggle_Unchecked"/>
+                    <Label Content="Tabulka s daty: " FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <sw:HorizontalToggleSwitch x:Name="dataToggle" IsChecked="True" CheckedContent="ANO" UncheckedContent="NE" Margin="0 0 20 0" Checked="DataToggle_Checked" Unchecked="DataToggle_Unchecked"/>
+                    <Label Content="Statistiky: " FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <sw:HorizontalToggleSwitch x:Name="statsToggle" IsChecked="False" CheckedContent="ANO" UncheckedContent="NE" Checked="StatsToggle_Checked" Unchecked="StatsToggle_Unchecked"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
 
-        <local:CollectionActionsView Grid.Row="1" Grid.Column="0" DataContext="{Binding CollectionActions}" 
+        <GroupBox Header="Data" Grid.Row="1" Grid.Column="0">
+            <local:CollectionActionsView  DataContext="{Binding CollectionActions}" 
                                      Visibility="{Binding ElementName=dataToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </GroupBox>
 
         <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" 
                       Visibility="{Binding ElementName=statsToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-        <ScrollViewer Grid.Row="3" CanContentScroll="True" 
+        <GroupBox Header="Statistiky" Grid.Row="3">
+            <ScrollViewer CanContentScroll="True" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto" 
                       ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                       VerticalContentAlignment="Top"
                       VerticalAlignment="Top"
                       HorizontalAlignment="Stretch"
                       Visibility="{Binding ElementName=statsToggle, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <local:StatsOrView x:Name="statsView" DataContext="{Binding Stats}" />
-        </ScrollViewer>
+                <local:StatsOrView x:Name="statsView" DataContext="{Binding Stats}" />
+            </ScrollViewer>
+        </GroupBox>
     </Grid>
 </UserControl>
